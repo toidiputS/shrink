@@ -58,6 +58,7 @@ export interface TradeProposal {
   fromStore: string;
   toStore: string;
   originalPostId: string;
+  department?: string;
   supplyItem: string;
   supplyQty: string;
   requestItem: string;
