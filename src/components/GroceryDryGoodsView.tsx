@@ -173,7 +173,6 @@ export default function GroceryDryGoodsView({ onProductClick, onMoveToTradersGui
                             cols={activeSegment.cols}
                             onMoveToTradersGuild={onMoveToTradersGuild}
                             isCoolerDoor={activeSegment.isCooler || false}
-                            onProductClick={(p) => onProductClick?.(p)}
                         />
                     </div>
 

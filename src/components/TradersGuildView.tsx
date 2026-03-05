@@ -13,7 +13,8 @@ import {
   User,
   MessageSquare,
   Check,
-  ChevronRight
+  ChevronRight,
+  Send
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { clsx, type ClassValue } from 'clsx';
@@ -358,13 +359,35 @@ export default function TradersGuildView() {
                     </div>
                   </div>
 
-                  <button
-                    onClick={() => handleProposeTrade(post)}
-                    className="w-full py-3 bg-white/5 hover:bg-accent-green hover:text-black border border-white/10 hover:border-accent-green rounded-xl text-xs font-bold uppercase tracking-widest text-white/60 transition-all flex items-center justify-center gap-2"
-                  >
-                    <ArrowRightLeft className="w-4 h-4" />
-                    Propose Trade
-                  </button>
+                  <div className="flex gap-2">
+                    <button
+                      onClick={() => handleProposeTrade(post)}
+                      className="flex-1 py-3 bg-white/5 hover:bg-accent-green hover:text-black border border-white/10 hover:border-accent-green rounded-xl text-xs font-bold uppercase tracking-widest text-white/60 transition-all flex items-center justify-center gap-2"
+                    >
+                      <ArrowRightLeft className="w-4 h-4" />
+                      Propose Trade
+                    </button>
+
+                    <a
+                      href={`https://t.me/share/url?url=${encodeURIComponent(window.location.origin)}&text=${encodeURIComponent(`Trade Offer from ${post.storeName}:\nNeeds: ${post.needs}\nOffers: ${post.offers}\n\nJoin the Traders Guild to respond!`)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-12 flex items-center justify-center bg-white/5 hover:bg-[#0088cc] text-white/40 hover:text-white border border-white/10 rounded-xl transition-all"
+                      title="Share via Telegram"
+                    >
+                      <Send className="w-4 h-4" />
+                    </a>
+
+                    <a
+                      href={`https://wa.me/?text=${encodeURIComponent(`Trade Offer from ${post.storeName}:\nNeeds: ${post.needs}\nOffers: ${post.offers}\n\nJoin the Traders Guild to respond!`)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-12 flex items-center justify-center bg-white/5 hover:bg-[#25D366] text-white/40 hover:text-white border border-white/10 rounded-xl transition-all"
+                      title="Share via WhatsApp"
+                    >
+                      <MessageSquare className="w-4 h-4" />
+                    </a>
+                  </div>
                 </div>
               );
             })}

@@ -17,7 +17,8 @@ import SettingsView from './components/SettingsView';
 import PitchMode from './components/PitchMode';
 import EfficiencyChart from './components/EfficiencyChart';
 import HighImpactOps from './components/HighImpactOps';
-import ProductDetailPanel from './components/ProductDetailPanel';
+import ProductSliderPanel from './components/ProductSliderPanel';
+import InventoryReportModal from './components/modals/InventoryReportModal';
 import SplashScreen from './components/SplashScreen';
 import AiAdvisorButton from './components/ai/AiAdvisorButton';
 import AiAdvisorPanel from './components/ai/AiAdvisorPanel';
@@ -37,6 +38,7 @@ export default function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const aiAdvisor = useAiAdvisor(MOCK_CATEGORIES);
   const [showSplash, setShowSplash] = useState(true);
+  const [showReportModal, setShowReportModal] = useState(false);
 
   const currentCategoryData = useMemo(() => {
     return MOCK_CATEGORIES.find(c => c.id === activeCategory) || MOCK_CATEGORIES[0];
@@ -151,7 +153,7 @@ export default function App() {
           </button>
           <div className="flex items-center gap-2">
             <h1 className="font-bold text-lg tracking-tight text-white/90">Shrink</h1>
-            <span className="text-[10px] text-white/30 uppercase tracking-widest">Know Your Store</span>
+            <span className="text-[10px] text-white/30 uppercase tracking-widest">STOP THE BLEED</span>
           </div>
         </div>
         <AnimatePresence mode="wait">
@@ -168,11 +170,12 @@ export default function App() {
                 category={currentCategoryData}
                 viewMode={viewMode}
                 onViewModeChange={setViewMode}
+                onGenerateReport={() => setShowReportModal(true)}
               />
             )}
 
             {viewMode === 'FullInventory' ? (
-              <FullInventoryView />
+              <FullInventoryView onViewModeChange={setViewMode} />
             ) : viewMode === 'DataIntegration' ? (
               <DataIntegrationView />
             ) : viewMode === 'StoreOverview' ? (
@@ -218,19 +221,6 @@ export default function App() {
         </AnimatePresence>
 
         <AnimatePresence>
-          {selectedProduct && (
-            <ProductDetailPanel
-              product={selectedProduct}
-              onClose={() => setSelectedProduct(null)}
-              onMoveToTradersGuild={(product) => {
-                setMoveToTradersGuildItem(product);
-                setSelectedProduct(null);
-              }}
-            />
-          )}
-        </AnimatePresence>
-
-        <AnimatePresence>
           {moveToTradersGuildItem && (
             <MoveToTradersGuildModal
               isOpen={!!moveToTradersGuildItem}
@@ -248,6 +238,26 @@ export default function App() {
             onExit={() => setIsPitchModeOpen(false)}
           />
         )}
+
+        <AnimatePresence>
+          {showReportModal && (
+            <InventoryReportModal
+              isOpen={showReportModal}
+              onClose={() => setShowReportModal(false)}
+              categories={MOCK_CATEGORIES}
+            />
+          )}
+        </AnimatePresence>
+
+        <AnimatePresence>
+          {selectedProduct && (
+            <ProductSliderPanel
+              product={selectedProduct}
+              onClose={() => setSelectedProduct(null)}
+              onMoveToTradersGuild={setMoveToTradersGuildItem}
+            />
+          )}
+        </AnimatePresence>
       </main>
 
       {/* AI Advisor */}

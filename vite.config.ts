@@ -15,7 +15,7 @@ export default defineConfig(({ mode }) => {
         registerType: 'autoUpdate',
         includeAssets: ['icon-512.png'],
         manifest: {
-          name: 'Shrink — Know Your Store',
+          name: 'Shrink — STOP THE BLEED',
           short_name: 'Shrink',
           description: 'Real-time retail store management dashboard. Track inventory, reduce shrink, and optimize operations.',
           theme_color: '#0A0A0A',

@@ -148,7 +148,6 @@ const AlcoholStoreView: React.FC<AlcoholStoreViewProps> = ({ onProductClick, onM
                     cols={activeSection.defaultCols}
                     units={activeSection.defaultUnits}
                     isCoolerDoor={activeSection.isCoolerDoor}
-                    onProductClick={(p) => onProductClick?.(p)}
                     onMoveToTradersGuild={onMoveToTradersGuild}
                 />
             </div>

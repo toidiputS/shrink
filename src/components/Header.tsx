@@ -12,9 +12,10 @@ interface HeaderProps {
   category: CategoryData;
   viewMode: ViewMode;
   onViewModeChange: (mode: ViewMode) => void;
+  onGenerateReport?: () => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ category, viewMode, onViewModeChange }) => {
+const Header: React.FC<HeaderProps> = ({ category, viewMode, onViewModeChange, onGenerateReport }) => {
   return (
     <header className="flex flex-col lg:flex-row lg:items-start justify-between gap-4 mb-6">
       <div>
@@ -60,7 +61,10 @@ const Header: React.FC<HeaderProps> = ({ category, viewMode, onViewModeChange })
           <span>Full Inventory View</span>
         </button>
 
-        <button className="flex items-center gap-2 px-4 py-2 bg-accent-green hover:bg-accent-green/90 text-black rounded-lg text-sm font-bold transition-colors">
+        <button
+          onClick={onGenerateReport}
+          className="flex items-center gap-2 px-4 py-2 bg-accent-green hover:bg-accent-green/90 text-black rounded-lg text-sm font-bold transition-colors"
+        >
           <FileText className="w-4 h-4" />
           <span>Generate Inventory Report</span>
         </button>

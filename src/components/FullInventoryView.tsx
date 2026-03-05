@@ -11,7 +11,7 @@ import {
   ArrowRightLeft
 } from 'lucide-react';
 import MoveToTradersGuildModal from './modals/MoveToTradersGuildModal';
-import { Product, ProductStatus } from '../types';
+import { Product, ProductStatus, ViewMode } from '../types';
 import { MOCK_CATEGORIES, MOCK_DELI_PRODUCTS, MOCK_GROCERY_PRODUCTS, MOCK_ALCOHOL_PRODUCTS } from '../constants';
 import {
   PieChart,
@@ -140,7 +140,7 @@ const CustomDropdown = ({
   );
 };
 
-export default function FullInventoryView() {
+export default function FullInventoryView({ onViewModeChange }: { onViewModeChange?: (mode: ViewMode) => void }) {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedDepartment, setSelectedDepartment] = useState('All');
   const [selectedCategory, setSelectedCategory] = useState('All');
@@ -199,6 +199,16 @@ export default function FullInventoryView() {
     });
     return Object.entries(data).map(([name, sales]) => ({ name, sales }));
   }, [allProducts]);
+
+  const handleDeptClick = (deptName: string) => {
+    if (!onViewModeChange) return;
+
+    // Map department string to ViewMode
+    if (deptName === 'Tobacco') onViewModeChange('TobaccoWall');
+    else if (deptName === 'Deli & Hot Foods') onViewModeChange('DeliHotFoods');
+    else if (deptName === 'Alcohol - Beer' || deptName === 'Alcohol - Liquor' || deptName === 'Alcohol - Wine') onViewModeChange('AlcoholStore');
+    else onViewModeChange('GroceryDryGoods'); // Default mapping for Meat/Fresh, Grocery, Freezer, Soda
+  };
 
   const COLORS = ['#059669', '#d97706', '#dc2626', '#0d9488', '#7c3aed', '#db2777', '#4f46e5', '#f59e0b', '#8b5cf6', '#ec4899', '#06b6d4', '#84cc16'];
 
@@ -345,13 +355,19 @@ export default function FullInventoryView() {
                     dataKey="value"
                   >
                     {inventoryValueByDept.map((entry, index) => (
-                      <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                      <Cell
+                        key={`cell-${index}`}
+                        fill={COLORS[index % COLORS.length]}
+                        onClick={() => handleDeptClick(entry.name)}
+                        className="cursor-pointer hover:opacity-80 transition-opacity"
+                      />
                     ))}
                   </Pie>
                   <Tooltip
                     contentStyle={{ backgroundColor: '#1A1A1A', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px' }}
-                    itemStyle={{ fontSize: '12px' }}
-                    formatter={(value: number) => [`$${value.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`, 'Value']}
+                    itemStyle={{ fontSize: '13px', color: '#ffffff', fontWeight: 'bold' }}
+                    labelStyle={{ color: '#ffffff80', fontSize: '11px', textTransform: 'uppercase', marginBottom: '4px' }}
+                    formatter={(value: number, name: string) => [`$${value.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`, name]}
                   />
                 </PieChart>
               </ResponsiveContainer>
@@ -390,9 +406,17 @@ export default function FullInventoryView() {
                   <Tooltip
                     cursor={{ fill: 'rgba(255,255,255,0.05)' }}
                     contentStyle={{ backgroundColor: '#1A1A1A', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px' }}
-                    formatter={(value: number) => [`$${value.toLocaleString()}`, 'Sales']}
+                    itemStyle={{ fontSize: '13px', color: '#ffffff', fontWeight: 'bold' }}
+                    labelStyle={{ color: '#ffffff80', fontSize: '11px', textTransform: 'uppercase', marginBottom: '4px' }}
+                    formatter={(value: number, name: string) => [`$${value.toLocaleString()}`, name === 'sales' ? 'Sales' : name]}
                   />
-                  <Bar dataKey="sales" fill="#059669" radius={[0, 4, 4, 0]} />
+                  <Bar
+                    dataKey="sales"
+                    fill="#059669"
+                    radius={[0, 4, 4, 0]}
+                    onClick={(data) => handleDeptClick(data.name)}
+                    className="cursor-pointer hover:opacity-80 transition-opacity"
+                  />
                 </BarChart>
               </ResponsiveContainer>
             </div>

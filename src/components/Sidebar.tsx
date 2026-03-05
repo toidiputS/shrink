@@ -106,7 +106,7 @@ const Sidebar: React.FC<SidebarProps> = ({
             </div>
             <div>
               <h1 className="font-bold text-xl tracking-tighter">Shrink</h1>
-              <p className="text-[10px] text-white/40 uppercase tracking-[0.2em]">Know Your Store</p>
+              <p className="text-[10px] text-white/40 uppercase tracking-[0.2em]">STOP THE BLEED</p>
             </div>
           </div>
           <button
