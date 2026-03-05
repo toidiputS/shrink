@@ -1,0 +1,4 @@
+src/components/KPIStrip.tsx(46,11): error TS2322: Type '{ key: number; title: string; value: any; trend: string; isPositive: true; icon: react.ForwardRefExoticComponent<any>; }' is not assignable to type 'DashboardCardProps'.
+  Property 'key' does not exist on type 'DashboardCardProps'.
+src/components/StoreOverview.tsx(70,13): error TS2322: Type '{ key: string; title: string; value: string; trend: string; isPositive: boolean; icon: react.ForwardRefExoticComponent<any>; }' is not assignable to type 'DashboardCardProps'.
+  Property 'key' does not exist on type 'DashboardCardProps'.
