@@ -62,8 +62,8 @@ const SEGMENTS: Segment[] = [
 ];
 
 // ─── Helpers ───────────────────────────────────────────────────
-function getSegmentProducts(segment: Segment): Product[] {
-    return MOCK_GROCERY_PRODUCTS.filter(p =>
+function getSegmentProducts(segment: Segment, products: Product[]): Product[] {
+    return products.filter(p =>
         p.category.toLowerCase().includes(segment.category.toLowerCase()) ||
         p.department.toLowerCase().includes(segment.category.toLowerCase())
     );
@@ -83,11 +83,11 @@ function getSegmentHealth(products: Product[]): { status: 'Healthy' | 'Low' | 'C
 
 function getSegmentStats(products: Product[]) {
     const totalSKUs = products.length;
-    const oosCount = products.filter(p => p.onHand === 0).length;
+    const oosCount = products.filter(p => p.qty_on_hand === 0).length;
     const lowCount = products.filter(p => p.status === 'Low').length;
     const critCount = products.filter(p => p.status === 'Critical').length;
     const shrinkRiskCount = products.filter(p => p.shrinkRisk === 'High').length;
-    const avgMargin = products.length > 0 ? Math.round(products.reduce((a, p) => a + p.margin, 0) / products.length) : 0;
+    const avgMargin = products.length > 0 ? Math.round(products.reduce((a, p) => a + p.retail_price, 0) / products.length) : 0;
     const totalDailySales = products.reduce((a, p) => a + p.dailySales, 0);
     const estShrink = Math.round(critCount * 12.5 + shrinkRiskCount * 8.3);
 
@@ -96,6 +96,7 @@ function getSegmentStats(products: Product[]) {
 
 // ─── Component Props ───────────────────────────────────────────
 interface GroceryDryGoodsViewProps {
+    products: Product[];
     onProductClick?: (product: Product) => void;
     onMoveToTradersGuild?: (product: Product) => void;
 }
@@ -103,7 +104,7 @@ interface GroceryDryGoodsViewProps {
 // ═══════════════════════════════════════════════════════════════
 // MAIN COMPONENT
 // ═══════════════════════════════════════════════════════════════
-export default function GroceryDryGoodsView({ onProductClick, onMoveToTradersGuild }: GroceryDryGoodsViewProps) {
+export default function GroceryDryGoodsView({ products, onProductClick, onMoveToTradersGuild }: GroceryDryGoodsViewProps) {
     const [activeSegment, setActiveSegment] = useState<Segment | null>(null);
     const [hoveredSegment, setHoveredSegment] = useState<Segment | null>(null);
     const [hoverPos, setHoverPos] = useState({ x: 0, y: 0 });
@@ -112,15 +113,15 @@ export default function GroceryDryGoodsView({ onProductClick, onMoveToTradersGui
     const segmentDataMap = useMemo(() => {
         const map = new Map<string, { products: Product[]; health: ReturnType<typeof getSegmentHealth>; stats: ReturnType<typeof getSegmentStats> }>();
         SEGMENTS.forEach(seg => {
-            const products = getSegmentProducts(seg);
+            const segmentProducts = getSegmentProducts(seg, products);
             map.set(seg.id, {
-                products,
-                health: getSegmentHealth(products),
-                stats: getSegmentStats(products),
+                products: segmentProducts,
+                health: getSegmentHealth(segmentProducts),
+                stats: getSegmentStats(segmentProducts),
             });
         });
         return map;
-    }, []);
+    }, [products]);
 
     const handleSegmentHover = (seg: Segment, e: React.MouseEvent) => {
         setHoveredSegment(seg);

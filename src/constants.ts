@@ -15,15 +15,15 @@ const generateProducts = (category: string, rows: number, slotsPerRow: number): 
       const status: ProductStatus = rand > 0.8 ? 'Critical' : rand > 0.5 ? 'Low' : 'Healthy';
       const brand = brands[Math.floor(Math.random() * brands.length)];
 
-      const costPrice = 5 + Math.floor(Math.random() * 10);
+      const unit_cost = 5 + Math.floor(Math.random() * 10);
       const historicalSales = Array.from({ length: 7 }, (_, i) => ({
         date: `Day ${i + 1}`,
         sales: Math.floor(Math.random() * 25)
       }));
 
       const sku = `SKU-${Math.floor(100000 + Math.random() * 900000)}`;
-      const onHand = Math.floor(Math.random() * 100);
-      const reorderPoint = 20 + Math.floor(Math.random() * 30);
+      const qty_on_hand = Math.floor(Math.random() * 100);
+      const qty_min_stock = 20 + Math.floor(Math.random() * 30);
       const sales30d = Math.floor(Math.random() * 500);
       const lastPODate = new Date(Date.now() - Math.random() * 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
 
@@ -37,17 +37,17 @@ const generateProducts = (category: string, rows: number, slotsPerRow: number): 
         brand: brand,
         category: category,
         department: 'Tobacco',
-        onHand,
-        reorderPoint,
+        qty_on_hand,
+        qty_min_stock,
         dailySales: Math.floor(Math.random() * 20),
         sales30d,
         sellThrough: Math.floor(Math.random() * 100),
-        margin: 15 + Math.floor(Math.random() * 15),
+        retail_price: 15 + Math.floor(Math.random() * 15),
         status,
         row: r,
         slot: s,
         slotId,
-        costPrice,
+        unit_cost,
         lastPODate,
         supplier: {
           name: 'Global Tobacco Logistics',
@@ -123,188 +123,188 @@ export const MOCK_CATEGORIES: CategoryData[] = [
 export const MOCK_DELI_PRODUCTS: Product[] = [
   {
     id: 'deli-1', sku: 'DELI-1001', name: 'Chicken Tenders 5lb Bag', brand: 'Sysco', category: 'Frozen Prep', department: 'Deli & Hot Foods',
-    onHand: 12, reorderPoint: 15, dailySales: 4, sales30d: 120, margin: 35, status: 'Low', costPrice: 24.50, lastPODate: '2026-02-20',
+    qty_on_hand: 12, qty_min_stock: 15, dailySales: 4, sales30d: 120, retail_price: 35, status: 'Low', unit_cost: 24.50, lastPODate: '2026-02-20',
     supplier: { name: 'Sysco Foods', contact: '555-0101', email: 'orders@sysco.com' }, historicalSales: [],
     sellThrough: 85, row: 0, slot: 0
   },
   {
     id: 'deli-2', sku: 'DELI-1002', name: 'Potato Wedges 5lb Bag', brand: 'Sysco', category: 'Frozen Prep', department: 'Deli & Hot Foods',
-    onHand: 8, reorderPoint: 10, dailySales: 3, sales30d: 90, margin: 45, status: 'Low', costPrice: 12.00, lastPODate: '2026-02-22',
+    qty_on_hand: 8, qty_min_stock: 10, dailySales: 3, sales30d: 90, retail_price: 45, status: 'Low', unit_cost: 12.00, lastPODate: '2026-02-22',
     supplier: { name: 'Sysco Foods', contact: '555-0101', email: 'orders@sysco.com' }, historicalSales: [],
     sellThrough: 90, row: 0, slot: 0
   },
   {
     id: 'deli-3', sku: 'DELI-1003', name: 'Mac & Cheese Pan', brand: 'Kraft Professional', category: 'Prepared', department: 'Deli & Hot Foods',
-    onHand: 24, reorderPoint: 10, dailySales: 5, sales30d: 150, margin: 40, status: 'Healthy', costPrice: 18.75, lastPODate: '2026-02-25',
+    qty_on_hand: 24, qty_min_stock: 10, dailySales: 5, sales30d: 150, retail_price: 40, status: 'Healthy', unit_cost: 18.75, lastPODate: '2026-02-25',
     supplier: { name: 'US Foods', contact: '555-0202', email: 'orders@usfoods.com' }, historicalSales: [],
     sellThrough: 75, row: 0, slot: 0
   },
   {
     id: 'deli-4', sku: 'DELI-1004', name: 'Breakfast Burrito 12ct', brand: 'Don Miguel', category: 'Frozen Prep', department: 'Deli & Hot Foods',
-    onHand: 5, reorderPoint: 12, dailySales: 6, sales30d: 180, margin: 38, status: 'Critical', costPrice: 15.20, lastPODate: '2026-02-15',
+    qty_on_hand: 5, qty_min_stock: 12, dailySales: 6, sales30d: 180, retail_price: 38, status: 'Critical', unit_cost: 15.20, lastPODate: '2026-02-15',
     supplier: { name: 'US Foods', contact: '555-0202', email: 'orders@usfoods.com' }, historicalSales: [],
     sellThrough: 95, row: 0, slot: 0
   },
   {
     id: 'deli-5', sku: 'DELI-1005', name: 'Corn Dogs 24ct', brand: 'State Fair', category: 'Frozen Prep', department: 'Deli & Hot Foods',
-    onHand: 15, reorderPoint: 8, dailySales: 2, sales30d: 60, margin: 42, status: 'Healthy', costPrice: 11.50, lastPODate: '2026-02-24',
+    qty_on_hand: 15, qty_min_stock: 8, dailySales: 2, sales30d: 60, retail_price: 42, status: 'Healthy', unit_cost: 11.50, lastPODate: '2026-02-24',
     supplier: { name: 'Sysco Foods', contact: '555-0101', email: 'orders@sysco.com' }, historicalSales: [],
     sellThrough: 80, row: 0, slot: 0
   },
   {
     id: 'deli-6', sku: 'DELI-1006', name: 'Mozzarella Sticks 5lb Bag', brand: 'Sysco', category: 'Frozen Prep', department: 'Deli & Hot Foods',
-    onHand: 20, reorderPoint: 10, dailySales: 3, sales30d: 90, margin: 48, status: 'Healthy', costPrice: 22.00, lastPODate: '2026-02-21',
+    qty_on_hand: 20, qty_min_stock: 10, dailySales: 3, sales30d: 90, retail_price: 48, status: 'Healthy', unit_cost: 22.00, lastPODate: '2026-02-21',
     supplier: { name: 'Sysco Foods', contact: '555-0101', email: 'orders@sysco.com' }, historicalSales: [],
     sellThrough: 70, row: 0, slot: 0
   },
   {
     id: 'deli-7', sku: 'DELI-1007', name: 'Jalapeno Poppers 3lb Bag', brand: 'Sysco', category: 'Frozen Prep', department: 'Deli & Hot Foods',
-    onHand: 4, reorderPoint: 6, dailySales: 1, sales30d: 30, margin: 50, status: 'Low', costPrice: 14.80, lastPODate: '2026-02-18',
+    qty_on_hand: 4, qty_min_stock: 6, dailySales: 1, sales30d: 30, retail_price: 50, status: 'Low', unit_cost: 14.80, lastPODate: '2026-02-18',
     supplier: { name: 'Sysco Foods', contact: '555-0101', email: 'orders@sysco.com' }, historicalSales: [],
     sellThrough: 60, row: 0, slot: 0
   },
   {
     id: 'deli-8', sku: 'DELI-1008', name: 'Buffalo Wings 10lb Bag', brand: 'Tyson', category: 'Frozen Prep', department: 'Deli & Hot Foods',
-    onHand: 30, reorderPoint: 15, dailySales: 8, sales30d: 240, margin: 32, status: 'Healthy', costPrice: 45.00, lastPODate: '2026-02-26',
+    qty_on_hand: 30, qty_min_stock: 15, dailySales: 8, sales30d: 240, retail_price: 32, status: 'Healthy', unit_cost: 45.00, lastPODate: '2026-02-26',
     supplier: { name: 'US Foods', contact: '555-0202', email: 'orders@usfoods.com' }, historicalSales: [],
     sellThrough: 88, row: 0, slot: 0
   },
   {
     id: 'deli-9', sku: 'DELI-1009', name: 'BBQ Ribs 5lb Bag', brand: 'Tyson', category: 'Frozen Prep', department: 'Deli & Hot Foods',
-    onHand: 2, reorderPoint: 5, dailySales: 1, sales30d: 30, margin: 30, status: 'Critical', costPrice: 32.00, lastPODate: '2026-02-10',
+    qty_on_hand: 2, qty_min_stock: 5, dailySales: 1, sales30d: 30, retail_price: 30, status: 'Critical', unit_cost: 32.00, lastPODate: '2026-02-10',
     supplier: { name: 'US Foods', contact: '555-0202', email: 'orders@usfoods.com' }, historicalSales: [],
     sellThrough: 40, row: 0, slot: 0
   },
   {
     id: 'deli-10', sku: 'DELI-1010', name: 'Meatballs 5lb Bag', brand: 'Rosina', category: 'Frozen Prep', department: 'Deli & Hot Foods',
-    onHand: 18, reorderPoint: 10, dailySales: 2, sales30d: 60, margin: 40, status: 'Healthy', costPrice: 19.50, lastPODate: '2026-02-23',
+    qty_on_hand: 18, qty_min_stock: 10, dailySales: 2, sales30d: 60, retail_price: 40, status: 'Healthy', unit_cost: 19.50, lastPODate: '2026-02-23',
     supplier: { name: 'Sysco Foods', contact: '555-0101', email: 'orders@sysco.com' }, historicalSales: [],
     sellThrough: 65, row: 0, slot: 0
   },
   {
     id: 'deli-11', sku: 'DELI-1011', name: 'Pizza Slices 12ct', brand: 'Hunt Brothers', category: 'Prepared', department: 'Deli & Hot Foods',
-    onHand: 40, reorderPoint: 20, dailySales: 15, sales30d: 450, margin: 55, status: 'Healthy', costPrice: 8.40, lastPODate: '2026-02-27',
+    qty_on_hand: 40, qty_min_stock: 20, dailySales: 15, sales30d: 450, retail_price: 55, status: 'Healthy', unit_cost: 8.40, lastPODate: '2026-02-27',
     supplier: { name: 'Hunt Brothers Pizza', contact: '555-0303', email: 'support@huntbros.com' }, historicalSales: [],
     sellThrough: 98, row: 0, slot: 0
   },
   {
     id: 'deli-12', sku: 'DELI-1012', name: 'Hot Dogs 12ct', brand: 'Nathan\'s', category: 'Prepared', department: 'Deli & Hot Foods',
-    onHand: 25, reorderPoint: 15, dailySales: 10, sales30d: 300, margin: 60, status: 'Healthy', costPrice: 6.20, lastPODate: '2026-02-27',
+    qty_on_hand: 25, qty_min_stock: 15, dailySales: 10, sales30d: 300, retail_price: 60, status: 'Healthy', unit_cost: 6.20, lastPODate: '2026-02-27',
     supplier: { name: 'Sysco Foods', contact: '555-0101', email: 'orders@sysco.com' }, historicalSales: [],
     sellThrough: 92, row: 0, slot: 0
   },
   {
     id: 'deli-13', sku: 'DELI-1013', name: 'Taquitos 24ct', brand: 'El Monterey', category: 'Frozen Prep', department: 'Deli & Hot Foods',
-    onHand: 12, reorderPoint: 10, dailySales: 4, sales30d: 120, margin: 45, status: 'Healthy', costPrice: 9.80, lastPODate: '2026-02-24',
+    qty_on_hand: 12, qty_min_stock: 10, dailySales: 4, sales30d: 120, retail_price: 45, status: 'Healthy', unit_cost: 9.80, lastPODate: '2026-02-24',
     supplier: { name: 'US Foods', contact: '555-0202', email: 'orders@usfoods.com' }, historicalSales: [],
     sellThrough: 82, row: 0, slot: 0
   },
   {
     id: 'deli-14', sku: 'DELI-1014', name: 'Egg Rolls 12ct', brand: 'Minh', category: 'Frozen Prep', department: 'Deli & Hot Foods',
-    onHand: 6, reorderPoint: 10, dailySales: 3, sales30d: 90, margin: 50, status: 'Low', costPrice: 7.50, lastPODate: '2026-02-22',
+    qty_on_hand: 6, qty_min_stock: 10, dailySales: 3, sales30d: 90, retail_price: 50, status: 'Low', unit_cost: 7.50, lastPODate: '2026-02-22',
     supplier: { name: 'Sysco Foods', contact: '555-0101', email: 'orders@sysco.com' }, historicalSales: [],
     sellThrough: 78, row: 0, slot: 0
   },
   {
     id: 'deli-15', sku: 'DELI-1015', name: 'Spring Rolls 24ct', brand: 'Minh', category: 'Frozen Prep', department: 'Deli & Hot Foods',
-    onHand: 20, reorderPoint: 10, dailySales: 2, sales30d: 60, margin: 52, status: 'Healthy', costPrice: 12.40, lastPODate: '2026-02-21',
+    qty_on_hand: 20, qty_min_stock: 10, dailySales: 2, sales30d: 60, retail_price: 52, status: 'Healthy', unit_cost: 12.40, lastPODate: '2026-02-21',
     supplier: { name: 'Sysco Foods', contact: '555-0101', email: 'orders@sysco.com' }, historicalSales: [],
     sellThrough: 68, row: 0, slot: 0
   },
   {
     id: 'deli-16', sku: 'DELI-1016', name: 'Fried Rice 5lb Bag', brand: 'Sysco', category: 'Frozen Prep', department: 'Deli & Hot Foods',
-    onHand: 10, reorderPoint: 8, dailySales: 2, sales30d: 60, margin: 40, status: 'Healthy', costPrice: 11.20, lastPODate: '2026-02-25',
+    qty_on_hand: 10, qty_min_stock: 8, dailySales: 2, sales30d: 60, retail_price: 40, status: 'Healthy', unit_cost: 11.20, lastPODate: '2026-02-25',
     supplier: { name: 'Sysco Foods', contact: '555-0101', email: 'orders@sysco.com' }, historicalSales: [],
     sellThrough: 72, row: 0, slot: 0
   },
   {
     id: 'deli-17', sku: 'DELI-1017', name: 'Chow Mein 5lb Bag', brand: 'Sysco', category: 'Frozen Prep', department: 'Deli & Hot Foods',
-    onHand: 3, reorderPoint: 8, dailySales: 2, sales30d: 60, margin: 40, status: 'Critical', costPrice: 11.20, lastPODate: '2026-02-15',
+    qty_on_hand: 3, qty_min_stock: 8, dailySales: 2, sales30d: 60, retail_price: 40, status: 'Critical', unit_cost: 11.20, lastPODate: '2026-02-15',
     supplier: { name: 'Sysco Foods', contact: '555-0101', email: 'orders@sysco.com' }, historicalSales: [],
     sellThrough: 55, row: 0, slot: 0
   },
   {
     id: 'deli-18', sku: 'DELI-1018', name: 'Orange Chicken 5lb Bag', brand: 'Sysco', category: 'Frozen Prep', department: 'Deli & Hot Foods',
-    onHand: 15, reorderPoint: 10, dailySales: 4, sales30d: 120, margin: 38, status: 'Healthy', costPrice: 28.50, lastPODate: '2026-02-26',
+    qty_on_hand: 15, qty_min_stock: 10, dailySales: 4, sales30d: 120, retail_price: 38, status: 'Healthy', unit_cost: 28.50, lastPODate: '2026-02-26',
     supplier: { name: 'Sysco Foods', contact: '555-0101', email: 'orders@sysco.com' }, historicalSales: [],
     sellThrough: 84, row: 0, slot: 0
   },
   {
     id: 'deli-19', sku: 'DELI-1019', name: 'Beef & Broccoli 5lb Bag', brand: 'Sysco', category: 'Frozen Prep', department: 'Deli & Hot Foods',
-    onHand: 7, reorderPoint: 10, dailySales: 3, sales30d: 90, margin: 35, status: 'Low', costPrice: 32.40, lastPODate: '2026-02-20',
+    qty_on_hand: 7, qty_min_stock: 10, dailySales: 3, sales30d: 90, retail_price: 35, status: 'Low', unit_cost: 32.40, lastPODate: '2026-02-20',
     supplier: { name: 'Sysco Foods', contact: '555-0101', email: 'orders@sysco.com' }, historicalSales: [],
     sellThrough: 76, row: 0, slot: 0
   },
   {
     id: 'deli-20', sku: 'DELI-1020', name: 'Sweet & Sour Pork 5lb Bag', brand: 'Sysco', category: 'Frozen Prep', department: 'Deli & Hot Foods',
-    onHand: 12, reorderPoint: 10, dailySales: 2, sales30d: 60, margin: 38, status: 'Healthy', costPrice: 26.80, lastPODate: '2026-02-22',
+    qty_on_hand: 12, qty_min_stock: 10, dailySales: 2, sales30d: 60, retail_price: 38, status: 'Healthy', unit_cost: 26.80, lastPODate: '2026-02-22',
     supplier: { name: 'Sysco Foods', contact: '555-0101', email: 'orders@sysco.com' }, historicalSales: [],
     sellThrough: 62, row: 0, slot: 0
   },
   {
     id: 'deli-21', sku: 'DELI-1021', name: 'Deli Sliced Ham 5lb', brand: 'Boar\'s Head', category: 'Meat', department: 'Deli & Hot Foods',
-    onHand: 25, reorderPoint: 15, dailySales: 8, sales30d: 240, margin: 28, status: 'Healthy', costPrice: 35.00, lastPODate: '2026-02-27',
+    qty_on_hand: 25, qty_min_stock: 15, dailySales: 8, sales30d: 240, retail_price: 28, status: 'Healthy', unit_cost: 35.00, lastPODate: '2026-02-27',
     supplier: { name: 'Boar\'s Head Provisions', contact: '555-0404', email: 'orders@boarshead.com' }, historicalSales: [],
     sellThrough: 94, row: 0, slot: 0
   },
   {
     id: 'deli-22', sku: 'DELI-1022', name: 'Deli Sliced Turkey 5lb', brand: 'Boar\'s Head', category: 'Meat', department: 'Deli & Hot Foods',
-    onHand: 10, reorderPoint: 15, dailySales: 10, sales30d: 300, margin: 30, status: 'Low', costPrice: 38.00, lastPODate: '2026-02-25',
+    qty_on_hand: 10, qty_min_stock: 15, dailySales: 10, sales30d: 300, retail_price: 30, status: 'Low', unit_cost: 38.00, lastPODate: '2026-02-25',
     supplier: { name: 'Boar\'s Head Provisions', contact: '555-0404', email: 'orders@boarshead.com' }, historicalSales: [],
     sellThrough: 96, row: 0, slot: 0
   },
   {
     id: 'deli-23', sku: 'DELI-1023', name: 'Deli Sliced Swiss Cheese 5lb', brand: 'Boar\'s Head', category: 'Cheese', department: 'Deli & Hot Foods',
-    onHand: 15, reorderPoint: 10, dailySales: 4, sales30d: 120, margin: 32, status: 'Healthy', costPrice: 22.50, lastPODate: '2026-02-26',
+    qty_on_hand: 15, qty_min_stock: 10, dailySales: 4, sales30d: 120, retail_price: 32, status: 'Healthy', unit_cost: 22.50, lastPODate: '2026-02-26',
     supplier: { name: 'Boar\'s Head Provisions', contact: '555-0404', email: 'orders@boarshead.com' }, historicalSales: [],
     sellThrough: 86, row: 0, slot: 0
   },
   {
     id: 'deli-24', sku: 'DELI-1024', name: 'Ranch Dressing 1gal', brand: 'Hidden Valley', category: 'Sauces', department: 'Deli & Hot Foods',
-    onHand: 4, reorderPoint: 6, dailySales: 1, sales30d: 30, margin: 40, status: 'Low', costPrice: 18.20, lastPODate: '2026-02-18',
+    qty_on_hand: 4, qty_min_stock: 6, dailySales: 1, sales30d: 30, retail_price: 40, status: 'Low', unit_cost: 18.20, lastPODate: '2026-02-18',
     supplier: { name: 'Sysco Foods', contact: '555-0101', email: 'orders@sysco.com' }, historicalSales: [],
     sellThrough: 50, row: 0, slot: 0
   },
   {
     id: 'deli-25', sku: 'DELI-1025', name: 'BBQ Sauce 1gal', brand: 'Sweet Baby Ray\'s', category: 'Sauces', department: 'Deli & Hot Foods',
-    onHand: 12, reorderPoint: 6, dailySales: 1, sales30d: 30, margin: 45, status: 'Healthy', costPrice: 15.50, lastPODate: '2026-02-24',
+    qty_on_hand: 12, qty_min_stock: 6, dailySales: 1, sales30d: 30, retail_price: 45, status: 'Healthy', unit_cost: 15.50, lastPODate: '2026-02-24',
     supplier: { name: 'US Foods', contact: '555-0202', email: 'orders@usfoods.com' }, historicalSales: [],
     sellThrough: 58, row: 0, slot: 0
   },
   // Deli Counter Items
   {
     id: 'deli-c-1', sku: 'DELI-C-101', name: 'Boar\'s Head OvenGold Turkey', brand: 'Boar\'s Head', category: 'Deli Counter', department: 'Deli & Hot Foods',
-    onHand: 45.5, reorderPoint: 20, dailySales: 12, sales30d: 360, margin: 35, status: 'Healthy', costPrice: 8.50, basePricePerLb: 12.99, currentPromo: '$11.99/lb', lastPODate: '2026-02-28',
+    qty_on_hand: 45.5, qty_min_stock: 20, dailySales: 12, sales30d: 360, retail_price: 35, status: 'Healthy', unit_cost: 8.50, basePricePerLb: 12.99, currentPromo: '$11.99/lb', lastPODate: '2026-02-28',
     supplier: { name: 'Boar\'s Head Provisions', contact: '555-0404', email: 'orders@boarshead.com' }, historicalSales: [],
     sellThrough: 92, row: 0, slot: 0
   },
   {
     id: 'deli-c-2', sku: 'DELI-C-102', name: 'Boar\'s Head Black Forest Ham', brand: 'Boar\'s Head', category: 'Deli Counter', department: 'Deli & Hot Foods',
-    onHand: 18.2, reorderPoint: 25, dailySales: 10, sales30d: 300, margin: 38, status: 'Low', costPrice: 6.80, basePricePerLb: 10.99, currentPromo: 'Buy 2+ lbs: $9.99/lb', lastPODate: '2026-02-28',
+    qty_on_hand: 18.2, qty_min_stock: 25, dailySales: 10, sales30d: 300, retail_price: 38, status: 'Low', unit_cost: 6.80, basePricePerLb: 10.99, currentPromo: 'Buy 2+ lbs: $9.99/lb', lastPODate: '2026-02-28',
     supplier: { name: 'Boar\'s Head Provisions', contact: '555-0404', email: 'orders@boarshead.com' }, historicalSales: [],
     sellThrough: 88, row: 0, slot: 0
   },
   {
     id: 'deli-c-3', sku: 'DELI-C-103', name: 'Boar\'s Head Roast Beef', brand: 'Boar\'s Head', category: 'Deli Counter', department: 'Deli & Hot Foods',
-    onHand: 12.4, reorderPoint: 15, dailySales: 8, sales30d: 240, margin: 32, status: 'Low', costPrice: 10.20, basePricePerLb: 14.99, lastPODate: '2026-02-28',
+    qty_on_hand: 12.4, qty_min_stock: 15, dailySales: 8, sales30d: 240, retail_price: 32, status: 'Low', unit_cost: 10.20, basePricePerLb: 14.99, lastPODate: '2026-02-28',
     supplier: { name: 'Boar\'s Head Provisions', contact: '555-0404', email: 'orders@boarshead.com' }, historicalSales: [],
     sellThrough: 85, row: 0, slot: 0
   },
   {
     id: 'deli-c-4', sku: 'DELI-C-104', name: 'Land O Lakes American Cheese', brand: 'Land O Lakes', category: 'Deli Counter', department: 'Deli & Hot Foods',
-    onHand: 62.0, reorderPoint: 30, dailySales: 15, sales30d: 450, margin: 45, status: 'Healthy', costPrice: 3.80, basePricePerLb: 6.99, currentPromo: '$5.99/lb', lastPODate: '2026-02-28',
+    qty_on_hand: 62.0, qty_min_stock: 30, dailySales: 15, sales30d: 450, retail_price: 45, status: 'Healthy', unit_cost: 3.80, basePricePerLb: 6.99, currentPromo: '$5.99/lb', lastPODate: '2026-02-28',
     supplier: { name: 'Sysco Foods', contact: '555-0101', email: 'orders@sysco.com' }, historicalSales: [],
     sellThrough: 95, row: 0, slot: 0
   },
   {
     id: 'deli-c-5', sku: 'DELI-C-105', name: 'Provolone Cheese', brand: 'Boar\'s Head', category: 'Deli Counter', department: 'Deli & Hot Foods',
-    onHand: 22.5, reorderPoint: 20, dailySales: 6, sales30d: 180, margin: 40, status: 'Healthy', costPrice: 4.50, basePricePerLb: 7.99, lastPODate: '2026-02-28',
+    qty_on_hand: 22.5, qty_min_stock: 20, dailySales: 6, sales30d: 180, retail_price: 40, status: 'Healthy', unit_cost: 4.50, basePricePerLb: 7.99, lastPODate: '2026-02-28',
     supplier: { name: 'Boar\'s Head Provisions', contact: '555-0404', email: 'orders@boarshead.com' }, historicalSales: [],
     sellThrough: 80, row: 0, slot: 0
   },
   {
     id: 'deli-c-6', sku: 'DELI-C-106', name: 'Swiss Cheese', brand: 'Boar\'s Head', category: 'Deli Counter', department: 'Deli & Hot Foods',
-    onHand: 8.5, reorderPoint: 15, dailySales: 5, sales30d: 150, margin: 42, status: 'Critical', costPrice: 5.20, basePricePerLb: 8.99, lastPODate: '2026-02-28',
+    qty_on_hand: 8.5, qty_min_stock: 15, dailySales: 5, sales30d: 150, retail_price: 42, status: 'Critical', unit_cost: 5.20, basePricePerLb: 8.99, lastPODate: '2026-02-28',
     supplier: { name: 'Boar\'s Head Provisions', contact: '555-0404', email: 'orders@boarshead.com' }, historicalSales: [],
     sellThrough: 78, row: 0, slot: 0
   }
@@ -345,16 +345,16 @@ const generateGroceryProducts = (section: string, categories: string[], brands: 
       brand,
       category,
       department: section === 'Meats' || section === 'Fresh' ? 'Meat & Fresh' : 'Grocery & Dry Goods',
-      onHand: Math.floor(Math.random() * (status === 'Critical' ? 5 : status === 'Low' ? 15 : 100)),
-      reorderPoint: 20,
+      qty_on_hand: Math.floor(Math.random() * (status === 'Critical' ? 5 : status === 'Low' ? 15 : 100)),
+      qty_min_stock: 20,
       dailySales: Math.floor(Math.random() * 15),
       sales30d: Math.floor(Math.random() * 400),
-      margin: 15 + Math.floor(Math.random() * 25),
+      retail_price: 15 + Math.floor(Math.random() * 25),
       status,
       row,
       slot: col,
       slotId,
-      costPrice: 1 + Math.random() * 10,
+      unit_cost: 1 + Math.random() * 10,
       lastPODate: '2026-02-28',
       supplier: { name: 'Direct Grocery Wholsale', contact: '555-0900', email: 'orders@dgwholesale.com' },
       historicalSales: [],
@@ -402,16 +402,16 @@ const generateAlcoholProducts = (section: string, categories: string[], brands: 
       brand,
       category,
       department: `Alcohol - ${section}`,
-      onHand: Math.floor(Math.random() * (status === 'Critical' ? 3 : status === 'Low' ? 12 : 60)),
-      reorderPoint: 10,
+      qty_on_hand: Math.floor(Math.random() * (status === 'Critical' ? 3 : status === 'Low' ? 12 : 60)),
+      qty_min_stock: 10,
       dailySales: Math.floor(Math.random() * 12),
       sales30d: Math.floor(Math.random() * 300),
-      margin: 20 + Math.floor(Math.random() * 30),
+      retail_price: 20 + Math.floor(Math.random() * 30),
       status,
       row,
       slot: col,
       slotId,
-      costPrice: price * 0.6,
+      unit_cost: price * 0.6,
       price,
       lastPODate: '2026-02-28',
       supplier: { name: 'Regional Beverage Dist.', contact: '555-0700', email: 'orders@regionalbev.com' },

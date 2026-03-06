@@ -1,10 +1,10 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { 
-  X, 
-  ArrowRightLeft, 
-  Store, 
-  CheckCircle2, 
+import {
+  X,
+  ArrowRightLeft,
+  Store,
+  CheckCircle2,
   XCircle,
   MessageSquare,
   Info
@@ -12,6 +12,7 @@ import {
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { TradePost, TradeProposal } from '../../types';
+import DemoProtectedAction from '../DemoProtectedAction';
 
 function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -32,15 +33,15 @@ export default function ReviewProposalModal({ isOpen, onClose, post, proposal, o
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-[140] flex items-center justify-center p-6">
-          <motion.div 
+        <div className="fixed inset-0 z-140 flex items-center justify-center p-4">
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
             className="absolute inset-0 bg-black/80 backdrop-blur-sm"
           />
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
@@ -56,7 +57,7 @@ export default function ReviewProposalModal({ isOpen, onClose, post, proposal, o
                   <p className="text-xs text-white/40">Respond to this store's post</p>
                 </div>
               </div>
-              <button 
+              <button
                 onClick={onClose}
                 className="p-2 hover:bg-white/5 rounded-lg transition-colors"
               >
@@ -71,7 +72,7 @@ export default function ReviewProposalModal({ isOpen, onClose, post, proposal, o
                   <Info className="w-3 h-3" />
                   Your Post
                 </div>
-                
+
                 <div className="bg-white/5 border border-white/5 rounded-xl p-6 space-y-6">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center">
@@ -135,20 +136,24 @@ export default function ReviewProposalModal({ isOpen, onClose, post, proposal, o
             </div>
 
             <div className="p-6 bg-white/5 border-t border-white/10 flex items-center justify-end gap-4">
-              <button 
-                onClick={() => onDecline(proposal)}
-                className="flex items-center gap-2 px-6 py-3 bg-white/5 hover:bg-accent-red/10 border border-white/10 hover:border-accent-red/30 rounded-xl font-bold text-xs uppercase tracking-widest text-white/40 hover:text-accent-red transition-all"
-              >
-                <XCircle className="w-4 h-4" />
-                Decline
-              </button>
-              <button 
-                onClick={() => onAccept(proposal)}
-                className="flex items-center gap-2 px-8 py-3 bg-accent-green text-black rounded-xl font-bold text-xs uppercase tracking-widest hover:bg-accent-green/90 transition-all shadow-lg shadow-accent-green/10"
-              >
-                <MessageSquare className="w-4 h-4" />
-                Accept & Open Chat
-              </button>
+              <DemoProtectedAction>
+                <button
+                  onClick={() => onDecline(proposal)}
+                  className="flex items-center gap-2 px-6 py-3 bg-white/5 hover:bg-accent-red/10 border border-white/10 hover:border-accent-red/30 rounded-xl font-bold text-xs uppercase tracking-widest text-white/40 hover:text-accent-red transition-all cursor-pointer"
+                >
+                  <XCircle className="w-4 h-4" />
+                  Decline
+                </button>
+              </DemoProtectedAction>
+              <DemoProtectedAction>
+                <button
+                  onClick={() => onAccept(proposal)}
+                  className="flex items-center gap-2 px-8 py-3 bg-accent-green text-black rounded-xl font-bold text-xs uppercase tracking-widest hover:bg-accent-green/90 transition-all shadow-lg shadow-accent-green/10 cursor-pointer"
+                >
+                  <MessageSquare className="w-4 h-4" />
+                  Accept & Open Chat
+                </button>
+              </DemoProtectedAction>
             </div>
           </motion.div>
         </div>

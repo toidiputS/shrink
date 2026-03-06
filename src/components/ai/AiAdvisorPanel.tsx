@@ -28,7 +28,8 @@ import {
     TrendingUp,
     Eye,
     ChevronDown,
-    ChevronUp
+    ChevronUp,
+    Download
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import ReactMarkdown from 'react-markdown';
@@ -315,6 +316,18 @@ export default function AiAdvisorPanel({
         setInput('');
     };
 
+    const handleExport = (content: string) => {
+        const blob = new Blob([content], { type: 'text/markdown;charset=utf-8;' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `Oracle_Analysis_${new Date().toISOString().split('T')[0]}.md`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    };
+
     return (
         <AnimatePresence>
             {isOpen && (
@@ -406,10 +419,19 @@ export default function AiAdvisorPanel({
                                         : 'bg-white/5 border border-white/5 text-white/80'
                                         }`}>
                                         {msg.role === 'assistant' ? (
-                                            <div className="prose prose-sm prose-invert max-w-none [&_p]:my-1 [&_ul]:my-1 [&_ol]:my-1 [&_li]:my-0.5 [&_h1]:text-base [&_h2]:text-sm [&_h3]:text-xs [&_strong]:text-emerald-300 [&_code]:bg-white/10 [&_code]:px-1 [&_code]:py-0.5 [&_code]:rounded [&_code]:text-xs">
-                                                <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                                                    {msg.content}
-                                                </ReactMarkdown>
+                                            <div className="relative group/msg">
+                                                <div className="prose prose-sm prose-invert max-w-none [&_p]:my-1 [&_ul]:my-1 [&_ol]:my-1 [&_li]:my-0.5 [&_h1]:text-base [&_h2]:text-sm [&_h3]:text-xs [&_strong]:text-emerald-300 [&_code]:bg-white/10 [&_code]:px-1 [&_code]:py-0.5 [&_code]:rounded [&_code]:text-xs">
+                                                    <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                                                        {msg.content}
+                                                    </ReactMarkdown>
+                                                </div>
+                                                <button
+                                                    onClick={() => handleExport(msg.content)}
+                                                    className="absolute -right-2 top-0 opacity-0 group-hover/msg:opacity-100 p-1.5 bg-bg-primary/80 backdrop-blur-sm border border-white/10 rounded-md hover:bg-emerald-500/20 hover:border-emerald-500/30 transition-all text-white/50 hover:text-emerald-400"
+                                                    title="Export Analysis"
+                                                >
+                                                    <Download className="w-3.5 h-3.5" />
+                                                </button>
                                             </div>
                                         ) : (
                                             <p>{msg.content}</p>

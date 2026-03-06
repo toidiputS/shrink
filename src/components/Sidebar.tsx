@@ -16,11 +16,14 @@ import {
   ArrowRightLeft,
   Target,
   Wine,
-  X
+  X,
+  Ticket,
+  LogOut
 } from 'lucide-react';
 import { TobaccoCategory, ViewMode } from '../types';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
+import { useAuth } from '../context/AuthContext';
 
 function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -45,14 +48,17 @@ const Sidebar: React.FC<SidebarProps> = ({
   onViewModeChange,
   onStartPitch
 }) => {
+  const { profile, signOut } = useAuth();
+  const isManager = profile?.role === 'manager';
   const mainNav = [
-    { id: 'pitch', label: 'Pitch Demo', icon: Target, action: onStartPitch, highlight: true },
-    { id: 'trade', label: 'Traders Guild', icon: ArrowRightLeft, viewMode: 'TradersGuild' as ViewMode },
+    ...(isManager ? [{ id: 'pitch', label: 'Pitch Demo', icon: Target, action: onStartPitch, highlight: true }] : []),
+    ...(isManager ? [{ id: 'trade', label: 'Traders Guild', icon: ArrowRightLeft, viewMode: 'TradersGuild' as ViewMode }] : []),
     { id: 'overview', label: 'Store Overview', icon: LayoutDashboard, viewMode: 'StoreOverview' as ViewMode },
     { id: 'tobacco', label: 'Tobacco Wall', icon: Cigarette, active: true, viewMode: 'TobaccoWall' as ViewMode },
     { id: 'deli', label: 'Deli & Hot Foods', icon: Flame, viewMode: 'DeliHotFoods' as ViewMode },
     { id: 'grocery', label: 'Grocery & Dry Goods', icon: Box, viewMode: 'GroceryDryGoods' as ViewMode },
     { id: 'alcohol', label: 'Alcohol Store', icon: Wine, viewMode: 'AlcoholStore' as ViewMode },
+    { id: 'lottery', label: 'Lottery', icon: Ticket, viewMode: 'Lottery' as ViewMode },
   ];
 
   const tobaccoSubNav: { id: TobaccoCategory; label: string; icon: any }[] = [
@@ -63,10 +69,10 @@ const Sidebar: React.FC<SidebarProps> = ({
   ];
 
   const bottomNav = [
-    { id: 'security', label: 'Security', icon: ShieldCheck, viewMode: 'Security' as ViewMode },
-    { id: 'network', label: 'Network', icon: Network },
-    { id: 'data-integration', label: 'Data Integration', icon: Database, viewMode: 'DataIntegration' as ViewMode },
-    { id: 'settings', label: 'Settings', icon: Settings, viewMode: 'Settings' as ViewMode },
+    ...(isManager ? [{ id: 'security', label: 'Security', icon: ShieldCheck, viewMode: 'Security' as ViewMode }] : []),
+    ...(isManager ? [{ id: 'network', label: 'Network', icon: Network }] : []),
+    ...(isManager ? [{ id: 'data-integration', label: 'Data Integration', icon: Database, viewMode: 'DataIntegration' as ViewMode }] : []),
+    ...(isManager ? [{ id: 'settings', label: 'Settings', icon: Settings, viewMode: 'Settings' as ViewMode }] : []),
   ];
 
   const handleNavClick = (callback: () => void) => {
@@ -183,12 +189,23 @@ const Sidebar: React.FC<SidebarProps> = ({
         </nav>
 
         <div className="mt-auto pt-4 border-t border-border-subtle">
-          <div className="flex items-center gap-3 px-2">
-            <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-xs font-bold">JD</div>
-            <div>
-              <p className="text-xs font-medium">John Doe</p>
-              <p className="text-[10px] text-white/40">Store Manager</p>
+          <div className="flex items-center justify-between px-2 group">
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 rounded-full bg-brand-primary/20 text-brand-primary flex items-center justify-center text-xs font-bold uppercase">
+                {profile?.name ? profile.name.slice(0, 2) : 'JD'}
+              </div>
+              <div>
+                <p className="text-xs font-medium text-white/90">{profile?.name || 'John Doe'}</p>
+                <p className="text-[10px] text-white/40 capitalize">{profile?.role || 'Store Manager'}</p>
+              </div>
             </div>
+            <button
+              onClick={() => signOut()}
+              className="p-2 text-white/30 hover:text-red-400 hover:bg-white/5 rounded-lg opacity-0 group-hover:opacity-100 transition-all cursor-pointer"
+              title="Sign Out"
+            >
+              <LogOut className="w-4 h-4" />
+            </button>
           </div>
         </div>
       </aside>

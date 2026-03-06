@@ -21,7 +21,7 @@ const InventoryReportModal: React.FC<InventoryReportModalProps> = ({ isOpen, onC
         categories.forEach(cat => {
             cat.products.forEach(p => {
                 products.push(p);
-                val += p.onHand * 8.50; // Approximated value per item for the report
+                val += p.qty_on_hand * 8.50; // Approximated value per item for the report
                 if (p.status === 'Critical') out++;
                 else if (p.status === 'Low') low++;
                 else healthy++;
@@ -40,7 +40,7 @@ const InventoryReportModal: React.FC<InventoryReportModalProps> = ({ isOpen, onC
     const handleExportCSV = () => {
         const headers = ['ID,Name,Brand,Status,On-Hand,Daily Sales,Facings\n'];
         const rows = allProducts.map(p =>
-            `"${p.id}","${p.name}","${p.brand}","${p.status}",${p.onHand},${p.dailySales},${p.facings || 1}`
+            `"${p.id}","${p.name}","${p.brand}","${p.status}",${p.qty_on_hand},${p.dailySales},${p.facings || 1}`
         );
         const csvContent = headers.concat(rows).join('\n');
 
@@ -154,7 +154,7 @@ const InventoryReportModal: React.FC<InventoryReportModalProps> = ({ isOpen, onC
                                                 {product.status === 'Healthy' ? 'In Stock' : product.status === 'Low' ? 'Low Stock' : 'Critical'}
                                             </span>
                                         </td>
-                                        <td className="p-3 text-right font-mono text-white print:text-black">{product.onHand}</td>
+                                        <td className="p-3 text-right font-mono text-white print:text-black">{product.qty_on_hand}</td>
                                         <td className="p-3 text-right font-mono text-white/60 print:text-black/70">{product.dailySales}</td>
                                     </tr>
                                 ))}

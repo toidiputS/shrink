@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import { useAuth } from '../context/AuthContext';
+import { supabase } from '../lib/supabase';
+import DemoProtectedAction from './DemoProtectedAction';
 import {
     Store,
     Bot,
@@ -32,7 +35,9 @@ import {
     LogIn,
     Key,
     Plus,
-    X
+    X,
+    Users,
+    Loader2
 } from 'lucide-react';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
@@ -41,10 +46,11 @@ function cn(...inputs: ClassValue[]) {
     return twMerge(clsx(inputs));
 }
 
-type SettingsTab = 'store' | 'ai' | 'notifications' | 'appearance' | 'data' | 'security';
+type SettingsTab = 'store' | 'team' | 'ai' | 'notifications' | 'appearance' | 'data' | 'security';
 
 const TABS: { id: SettingsTab; label: string; icon: any; description: string }[] = [
     { id: 'store', label: 'Store Profile', icon: Store, description: 'Store details & manager info' },
+    { id: 'team', label: 'Team', icon: Users, description: 'Manage employee accounts' },
     { id: 'ai', label: 'AI Advisor', icon: Bot, description: 'Model endpoint & configuration' },
     { id: 'notifications', label: 'Notifications', icon: Bell, description: 'Alert preferences & thresholds' },
     { id: 'appearance', label: 'Appearance', icon: Palette, description: 'Theme, colors & layout' },
@@ -198,6 +204,7 @@ function SectionTitle({ children }: { children: React.ReactNode }) {
 // === MAIN COMPONENT ===
 
 export default function SettingsView() {
+    const { profile } = useAuth();
     const [activeTab, setActiveTab] = useState<SettingsTab>('store');
     const [settings, setSettings] = useState<SettingsState>(loadSettings);
     const [saved, setSaved] = useState(false);
@@ -205,10 +212,66 @@ export default function SettingsView() {
     const [showPin, setShowPin] = useState(false);
     const [showApiKey, setShowApiKey] = useState(false);
 
+    const [teamTab, setTeamTab] = useState<'employee' | 'manager'>('employee');
+    const [teamMembers, setTeamMembers] = useState<any[]>([]);
+    const [isLoadingTeam, setIsLoadingTeam] = useState(false);
+    const [showNewEmployeeForm, setShowNewEmployeeForm] = useState(false);
+    const [isSubmittingEmployee, setIsSubmittingEmployee] = useState(false);
+    const [employeeError, setEmployeeError] = useState<string | null>(null);
+    const [newEmployee, setNewEmployee] = useState({ name: '', email: '', role: 'employee' });
+
     // Auto-save on change
     useEffect(() => {
         saveSettings(settings);
     }, [settings]);
+
+    useEffect(() => {
+        if (activeTab === 'team' && profile?.store_id) {
+            loadTeam();
+        }
+    }, [activeTab, profile?.store_id]);
+
+    const loadTeam = async () => {
+        if (!profile?.store_id) return;
+        setIsLoadingTeam(true);
+        const { data, error } = await supabase
+            .from('users')
+            .select('*')
+            .eq('store_id', profile.store_id)
+            .order('created_at', { ascending: false });
+        if (!error && data) {
+            setTeamMembers(data);
+        }
+        setIsLoadingTeam(false);
+    };
+
+    const handleCreateEmployee = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setEmployeeError(null);
+        if (!newEmployee.name || !newEmployee.email) {
+            setEmployeeError('All fields are required.');
+            return;
+        }
+        setIsSubmittingEmployee(true);
+        try {
+            const { data, error } = await supabase.functions.invoke('create-user', {
+                body: {
+                    ...newEmployee,
+                    store_id: profile?.store_id
+                }
+            });
+            if (error) throw error;
+            if (data?.error) throw new Error(data.error);
+
+            await loadTeam();
+            setShowNewEmployeeForm(false);
+            setNewEmployee({ name: '', email: '', role: 'employee' });
+        } catch (err: any) {
+            setEmployeeError(err.message || 'Failed to create user');
+        } finally {
+            setIsSubmittingEmployee(false);
+        }
+    };
 
     const update = <K extends keyof SettingsState>(key: K, value: SettingsState[K]) => {
         setSettings(prev => ({ ...prev, [key]: value }));
@@ -311,6 +374,152 @@ export default function SettingsView() {
                         <TextInput value={settings.managerRole} onChange={(v) => update('managerRole', v)} icon={Shield} />
                     </div>
                 </div>
+            </SettingsCard>
+        </div>
+    );
+
+    const renderTeamManagement = () => (
+        <div className="space-y-6">
+            <div className="flex items-center justify-between">
+                <div className="flex items-center gap-4">
+                    <SectionTitle>Store Team</SectionTitle>
+                    <div className="flex items-center bg-white/5 rounded-lg p-1 mb-4 mt-[-4px]">
+                        <button
+                            onClick={() => setTeamTab('employee')}
+                            className={cn(
+                                "px-4 py-1.5 rounded-md text-[10px] font-bold uppercase tracking-widest transition-colors",
+                                teamTab === 'employee' ? "bg-white/10 text-white" : "text-white/40 hover:text-white/80"
+                            )}
+                        >
+                            Employees
+                        </button>
+                        <button
+                            onClick={() => setTeamTab('manager')}
+                            className={cn(
+                                "px-4 py-1.5 rounded-md text-[10px] font-bold uppercase tracking-widest transition-colors",
+                                teamTab === 'manager' ? "bg-white/10 text-white" : "text-white/40 hover:text-white/80"
+                            )}
+                        >
+                            Managers
+                        </button>
+                    </div>
+                </div>
+
+                <DemoProtectedAction>
+                    <button
+                        onClick={() => {
+                            setNewEmployee(prev => ({ ...prev, role: teamTab }));
+                            setShowNewEmployeeForm(true);
+                        }}
+                        className="flex items-center gap-2 px-3 py-1.5 bg-accent-green text-black text-[10px] font-black uppercase tracking-widest rounded-lg hover:bg-emerald-400 transition-colors mb-4 cursor-pointer"
+                    >
+                        <Plus className="w-3 h-3" /> Invite {teamTab === 'manager' ? 'Manager' : 'Employee'}
+                    </button>
+                </DemoProtectedAction>
+            </div>
+
+            {showNewEmployeeForm && (
+                <SettingsCard className="border-accent-green/30 bg-accent-green/5">
+                    <h4 className="text-sm font-bold text-white mb-4">Send Invite</h4>
+                    <p className="text-xs text-white/50 mb-4 mt-[-10px]">An invitation email will be sent securely to set up their password.</p>
+                    <form onSubmit={handleCreateEmployee} className="space-y-4">
+                        {employeeError && (
+                            <div className="p-3 bg-red-500/10 border border-red-500/20 rounded-lg text-xs text-red-400">
+                                {employeeError}
+                            </div>
+                        )}
+                        <div className="grid grid-cols-2 gap-4">
+                            <div>
+                                <label className="text-[10px] font-bold uppercase tracking-widest text-white/40 mb-2 block">Full Name</label>
+                                <TextInput value={newEmployee.name} onChange={(v) => setNewEmployee(prev => ({ ...prev, name: v }))} icon={User} placeholder="Jane Doe" />
+                            </div>
+                            <div>
+                                <label className="text-[10px] font-bold uppercase tracking-widest text-white/40 mb-2 block">Email Address</label>
+                                <TextInput type="email" value={newEmployee.email} onChange={(v) => setNewEmployee(prev => ({ ...prev, email: v }))} icon={Mail} placeholder="jane@shrink.com" />
+                            </div>
+                            <div className="col-span-2">
+                                <label className="text-[10px] font-bold uppercase tracking-widest text-white/40 mb-2 block">Role</label>
+                                <select
+                                    value={newEmployee.role}
+                                    onChange={(e) => setNewEmployee(prev => ({ ...prev, role: e.target.value }))}
+                                    className="w-full bg-white/5 border border-white/10 rounded-lg text-sm text-white px-4 py-2.5 focus:outline-none focus:border-accent-green/50 transition-colors appearance-none"
+                                >
+                                    <option value="employee">Employee</option>
+                                    <option value="manager">Manager</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div className="flex items-center justify-end gap-3 pt-2">
+                            <button
+                                type="button"
+                                onClick={() => setShowNewEmployeeForm(false)}
+                                className="px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-widest text-white/60 hover:text-white transition-colors"
+                            >
+                                Cancel
+                            </button>
+                            <button
+                                type="submit"
+                                disabled={isSubmittingEmployee}
+                                className="flex items-center gap-2 px-6 py-2 bg-accent-green text-black rounded-lg text-xs font-bold uppercase tracking-widest hover:bg-emerald-400 transition-colors disabled:opacity-50"
+                            >
+                                {isSubmittingEmployee ? <Loader2 className="w-4 h-4 animate-spin" /> : 'Send Invite'}
+                            </button>
+                        </div>
+                    </form>
+                </SettingsCard>
+            )}
+
+            <SettingsCard className="p-0 overflow-hidden">
+                {isLoadingTeam ? (
+                    <div className="p-8 text-center">
+                        <Loader2 className="w-6 h-6 text-accent-green animate-spin mx-auto mb-2" />
+                        <p className="text-xs text-white/40">Loading team members...</p>
+                    </div>
+                ) : (
+                    <table className="w-full text-left">
+                        <thead className="bg-white/3 border-b border-white/5">
+                            <tr>
+                                <th className="px-5 py-3 text-[9px] font-black text-white/40 uppercase tracking-widest">Name</th>
+                                <th className="px-5 py-3 text-[9px] font-black text-white/40 uppercase tracking-widest">Email</th>
+                                <th className="px-5 py-3 text-[9px] font-black text-white/40 uppercase tracking-widest">Role</th>
+                                <th className="px-5 py-3 text-[9px] font-black text-white/40 uppercase tracking-widest">Joined</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {teamMembers.filter(m => m.role === teamTab).map((member) => (
+                                <tr key={member.id} className="border-b border-white/5 last:border-0 hover:bg-white/3 transition-colors">
+                                    <td className="px-5 py-3">
+                                        <div className="flex items-center gap-3">
+                                            <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-xs font-bold text-white">
+                                                {member.name.charAt(0).toUpperCase()}
+                                            </div>
+                                            <span className="text-sm font-bold text-white">{member.name}</span>
+                                        </div>
+                                    </td>
+                                    <td className="px-5 py-3 text-xs text-white/60">{member.email}</td>
+                                    <td className="px-5 py-3">
+                                        <span className={cn(
+                                            "px-2 py-0.5 rounded-md text-[9px] font-bold uppercase tracking-widest",
+                                            member.role === 'manager'
+                                                ? "bg-accent-green/10 text-accent-green border border-accent-green/20"
+                                                : "bg-white/5 text-white/40 border border-white/10"
+                                        )}>{member.role}</span>
+                                    </td>
+                                    <td className="px-5 py-3 text-xs text-white/40">
+                                        {new Date(member.created_at).toLocaleDateString()}
+                                    </td>
+                                </tr>
+                            ))}
+                            {teamMembers.filter(m => m.role === teamTab).length === 0 && (
+                                <tr>
+                                    <td colSpan={4} className="px-5 py-8 text-center text-sm text-white/40">
+                                        No {teamTab}s found.
+                                    </td>
+                                </tr>
+                            )}
+                        </tbody>
+                    </table>
+                )}
             </SettingsCard>
         </div>
     );
@@ -757,6 +966,7 @@ Format responses with Markdown.`}
     const renderContent = () => {
         switch (activeTab) {
             case 'store': return renderStoreProfile();
+            case 'team': return renderTeamManagement();
             case 'ai': return renderAiAdvisor();
             case 'notifications': return renderNotifications();
             case 'appearance': return renderAppearance();
@@ -773,17 +983,19 @@ Format responses with Markdown.`}
                     <h1 className="text-2xl font-black uppercase tracking-wider text-white">Settings</h1>
                     <p className="text-xs text-white/40 uppercase tracking-[0.2em] mt-1">Configuration & Preferences</p>
                 </div>
-                <button
-                    onClick={handleSave}
-                    className={cn(
-                        "flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold uppercase tracking-widest transition-all border cursor-pointer",
-                        saved
-                            ? "bg-accent-green/20 border-accent-green/40 text-accent-green"
-                            : "bg-white/5 border-white/10 text-white/60 hover:bg-white/10 hover:text-white"
-                    )}
-                >
-                    {saved ? <><CheckCircle2 className="w-4 h-4" /> Saved</> : <><Save className="w-4 h-4" /> Save Changes</>}
-                </button>
+                <DemoProtectedAction>
+                    <button
+                        onClick={handleSave}
+                        className={cn(
+                            "flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold uppercase tracking-widest transition-all border cursor-pointer",
+                            saved
+                                ? "bg-accent-green/20 border-accent-green/40 text-accent-green"
+                                : "bg-white/5 border-white/10 text-white/60 hover:bg-white/10 hover:text-white"
+                        )}
+                    >
+                        {saved ? <><CheckCircle2 className="w-4 h-4" /> Saved</> : <><Save className="w-4 h-4" /> Save Changes</>}
+                    </button>
+                </DemoProtectedAction>
             </div>
 
             {/* Body: Tab Nav + Content */}

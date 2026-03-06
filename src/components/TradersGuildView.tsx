@@ -26,6 +26,7 @@ import TradeChatPanel from './trade/TradeChatPanel';
 import ManageTradePostModal from './trade/ManageTradePostModal';
 import ProposalDetailsModal from './trade/ProposalDetailsModal';
 import { TradePost, TradeProposal, TradePostStatus } from '../types';
+import DemoProtectedAction from './DemoProtectedAction';
 
 function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -656,12 +657,14 @@ export default function TradersGuildView() {
                 >
                   Cancel
                 </button>
-                <button
-                  onClick={() => setIsModalOpen(false)}
-                  className="px-8 py-3 bg-accent-green text-black rounded-xl font-bold text-xs uppercase tracking-widest hover:bg-accent-green/90 transition-all shadow-lg shadow-accent-green/10"
-                >
-                  Publish Post
-                </button>
+                <DemoProtectedAction>
+                  <button
+                    onClick={() => setIsModalOpen(false)}
+                    className="px-8 py-3 bg-accent-green text-black rounded-xl font-bold text-xs uppercase tracking-widest hover:bg-accent-green/90 transition-all shadow-lg shadow-accent-green/10 cursor-pointer"
+                  >
+                    Publish Post
+                  </button>
+                </DemoProtectedAction>
               </div>
             </motion.div>
           </div>

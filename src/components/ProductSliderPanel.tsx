@@ -109,7 +109,7 @@ const ProductSliderPanel: React.FC<ProductSliderPanelProps> = ({
                                     </div>
                                     <div className="text-right">
                                         <div className="text-[10px] font-bold text-white/40 uppercase tracking-widest mb-0.5">On-Hand</div>
-                                        <div className="text-2xl font-mono font-bold text-white leading-none">{product.onHand}</div>
+                                        <div className="text-2xl font-mono font-bold text-white leading-none">{product.qty_on_hand}</div>
                                     </div>
                                 </div>
                             </section>
@@ -123,11 +123,11 @@ const ProductSliderPanel: React.FC<ProductSliderPanelProps> = ({
                                 <div className="grid grid-cols-2 gap-3">
                                     <div className="bg-white/5 border border-white/5 rounded-xl p-3">
                                         <div className="text-[9px] text-white/40 uppercase font-black tracking-widest mb-1">Cost Price</div>
-                                        <div className="text-lg font-mono font-bold text-white">${product.costPrice.toFixed(2)}</div>
+                                        <div className="text-lg font-mono font-bold text-white">${product.unit_cost.toFixed(2)}</div>
                                     </div>
                                     <div className="bg-white/5 border border-white/5 rounded-xl p-3">
                                         <div className="text-[9px] text-white/40 uppercase font-black tracking-widest mb-1">Profit Margin</div>
-                                        <div className="text-lg font-mono font-bold text-accent-green">{product.margin}%</div>
+                                        <div className="text-lg font-mono font-bold text-accent-green">{product.retail_price}%</div>
                                     </div>
                                     <div className="bg-white/5 border border-white/5 rounded-xl p-3">
                                         <div className="text-[9px] text-white/40 uppercase font-black tracking-widest mb-1">Sales / Day</div>

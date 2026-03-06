@@ -88,8 +88,8 @@ const SECTIONS: AlcoholSection[] = [
 ];
 
 // ─── ANALYTICS HELPERS ───
-function getSectionProducts(department: string): Product[] {
-    return MOCK_ALCOHOL_PRODUCTS.filter(p => p.department === department);
+function getSectionProducts(department: string, products: Product[]): Product[] {
+    return products.filter(p => p.department === department);
 }
 
 function getSectionHealth(products: Product[]): 'green' | 'orange' | 'red' {
@@ -102,7 +102,7 @@ function getSectionHealth(products: Product[]): 'green' | 'orange' | 'red' {
 
 function getSectionStats(products: Product[]) {
     const totalSKUs = products.length;
-    const avgMargin = totalSKUs > 0 ? Math.round(products.reduce((s, p) => s + p.margin, 0) / totalSKUs) : 0;
+    const avgMargin = totalSKUs > 0 ? Math.round(products.reduce((s, p) => s + p.retail_price, 0) / totalSKUs) : 0;
     const totalDailySales = products.reduce((s, p) => s + p.dailySales, 0);
     const criticalCount = products.filter(p => p.status === 'Critical').length;
     const lowCount = products.filter(p => p.status === 'Low').length;
@@ -116,18 +116,19 @@ function getSectionStats(products: Product[]) {
 // ═══════════════════════════════════════════════
 
 interface AlcoholStoreViewProps {
+    products: Product[];
     onProductClick?: (product: Product) => void;
     onMoveToTradersGuild?: (product: Product) => void;
 }
 
-const AlcoholStoreView: React.FC<AlcoholStoreViewProps> = ({ onProductClick, onMoveToTradersGuild }) => {
+const AlcoholStoreView: React.FC<AlcoholStoreViewProps> = ({ products, onProductClick, onMoveToTradersGuild }) => {
     const [activeSection, setActiveSection] = useState<AlcoholSection | null>(null);
     const [hoveredSection, setHoveredSection] = useState<string | null>(null);
     const [hoverPos, setHoverPos] = useState({ x: 0, y: 0 });
 
     // ── DRILL-DOWN VIEW ──
     if (activeSection) {
-        const sectionProducts = getSectionProducts(activeSection.department);
+        const sectionProducts = getSectionProducts(activeSection.department, products);
         return (
             <div className="flex flex-col h-full gap-4">
                 {/* Back Button */}
@@ -174,9 +175,9 @@ const AlcoholStoreView: React.FC<AlcoholStoreViewProps> = ({ onProductClick, onM
             {/* ═══ THE FLOOR MAP ═══ */}
             <div className="flex-1 grid grid-cols-3 gap-6 min-h-0">
                 {SECTIONS.map(section => {
-                    const products = getSectionProducts(section.department);
-                    const health = getSectionHealth(products);
-                    const stats = getSectionStats(products);
+                    const sectionProducts = getSectionProducts(section.department, products);
+                    const health = getSectionHealth(sectionProducts);
+                    const stats = getSectionStats(sectionProducts);
                     const SectionIcon = section.icon;
 
                     return (
@@ -266,14 +267,14 @@ const AlcoholStoreView: React.FC<AlcoholStoreViewProps> = ({ onProductClick, onM
                                 <div className="space-y-1.5">
                                     <div className="text-[8px] text-white/20 uppercase font-black tracking-widest">Categories</div>
                                     <div className="flex flex-wrap gap-1.5">
-                                        {[...new Set(products.map(p => p.category))].slice(0, 6).map(cat => (
+                                        {[...new Set(sectionProducts.map(p => p.category))].slice(0, 6).map(cat => (
                                             <span key={cat} className="px-2 py-0.5 bg-white/5 rounded text-[8px] font-bold text-white/40 border border-white/5">
                                                 {cat}
                                             </span>
                                         ))}
-                                        {[...new Set(products.map(p => p.category))].length > 6 && (
+                                        {[...new Set(sectionProducts.map(p => p.category))].length > 6 && (
                                             <span className="px-2 py-0.5 bg-white/5 rounded text-[8px] font-bold text-white/30 border border-white/5">
-                                                +{[...new Set(products.map(p => p.category))].length - 6} more
+                                                +{[...new Set(sectionProducts.map(p => p.category))].length - 6} more
                                             </span>
                                         )}
                                     </div>
@@ -310,9 +311,9 @@ const AlcoholStoreView: React.FC<AlcoholStoreViewProps> = ({ onProductClick, onM
                     >
                         {(() => {
                             const section = SECTIONS.find(s => s.id === hoveredSection)!;
-                            const products = getSectionProducts(section.department);
-                            const stats = getSectionStats(products);
-                            const health = getSectionHealth(products);
+                            const sectionProducts = getSectionProducts(section.department, products);
+                            const stats = getSectionStats(sectionProducts);
+                            const health = getSectionHealth(sectionProducts);
                             return (
                                 <>
                                     <div className="flex items-center gap-2 mb-2">

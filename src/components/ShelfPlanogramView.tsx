@@ -479,7 +479,7 @@ const ShelfPlanogramView: React.FC<ShelfPlanogramViewProps> = ({
                                                                             product.status === 'Low' ? "bg-accent-orange/20 text-accent-orange border-accent-orange/30" :
                                                                                 "bg-accent-red/20 text-accent-red border-accent-red/30"
                                                                     )}>
-                                                                        {product.onHand} QTY
+                                                                        {product.qty_on_hand} QTY
                                                                     </div>
                                                                 </div>
 
@@ -596,7 +596,7 @@ const ShelfPlanogramView: React.FC<ShelfPlanogramViewProps> = ({
                         <div className="grid grid-cols-2 gap-4 text-left">
                             <div>
                                 <p className="text-[9px] text-white/40 uppercase font-bold mb-1">On-Hand</p>
-                                <p className="text-lg font-mono font-medium text-white">{hoveredProduct.onHand}</p>
+                                <p className="text-lg font-mono font-medium text-white">{hoveredProduct.qty_on_hand}</p>
                             </div>
                             <div>
                                 <p className="text-[9px] text-white/40 uppercase font-bold mb-1">Daily Sales</p>
@@ -611,7 +611,7 @@ const ShelfPlanogramView: React.FC<ShelfPlanogramViewProps> = ({
                             </div>
                             <div>
                                 <p className="text-[9px] text-white/40 uppercase font-bold mb-1">Margin</p>
-                                <p className="text-lg font-mono font-medium text-white">{hoveredProduct.margin}%</p>
+                                <p className="text-lg font-mono font-medium text-white">{hoveredProduct.retail_price}%</p>
                             </div>
                         </div>
 

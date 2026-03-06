@@ -22,7 +22,7 @@ interface MoveToTradersGuildModalProps {
         id: string;
         name: string;
         category: string;
-        onHand?: number | string;
+        qty_on_hand?: number | string;
         onHandValue?: number;
         price?: number;
     };
@@ -111,7 +111,7 @@ export default function MoveToTradersGuildModal({ isOpen, onClose, product }: Mo
                                             <span className="text-[10px] font-medium text-white/40 uppercase tracking-wider">{product.category}</span>
                                         </div>
                                         <div className="flex items-center gap-4 text-[10px] text-white/40 font-bold uppercase tracking-widest">
-                                            <span>On Hand: <span className="text-white">{product.onHand || '0'}</span></span>
+                                            <span>On Hand: <span className="text-white">{product.qty_on_hand || '0'}</span></span>
                                             <span>Total Value: <span className="text-accent-green">${product.onHandValue?.toLocaleString() || '0.00'}</span></span>
                                         </div>
                                     </div>

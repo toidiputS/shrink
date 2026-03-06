@@ -11,7 +11,7 @@ import {
   ArrowRightLeft
 } from 'lucide-react';
 import MoveToTradersGuildModal from './modals/MoveToTradersGuildModal';
-import { Product, ProductStatus, ViewMode } from '../types';
+import { Product, ProductStatus, ViewMode, CategoryData } from '../types';
 import { MOCK_CATEGORIES, MOCK_DELI_PRODUCTS, MOCK_GROCERY_PRODUCTS, MOCK_ALCOHOL_PRODUCTS } from '../constants';
 import {
   PieChart,
@@ -140,7 +140,21 @@ const CustomDropdown = ({
   );
 };
 
-export default function FullInventoryView({ onViewModeChange }: { onViewModeChange?: (mode: ViewMode) => void }) {
+interface FullInventoryViewProps {
+  onViewModeChange?: (mode: ViewMode) => void;
+  tobaccoCategories: CategoryData[];
+  deliProducts: Product[];
+  groceryProducts: Product[];
+  alcoholProducts: Product[];
+}
+
+export default function FullInventoryView({
+  onViewModeChange,
+  tobaccoCategories,
+  deliProducts,
+  groceryProducts,
+  alcoholProducts
+}: FullInventoryViewProps) {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedDepartment, setSelectedDepartment] = useState('All');
   const [selectedCategory, setSelectedCategory] = useState('All');
@@ -150,9 +164,9 @@ export default function FullInventoryView({ onViewModeChange }: { onViewModeChan
 
   // Flatten all products from all departments
   const allProducts = useMemo(() => {
-    const tobaccoProducts = MOCK_CATEGORIES.flatMap(cat => cat.products);
-    return [...tobaccoProducts, ...MOCK_DELI_PRODUCTS, ...MOCK_GROCERY_PRODUCTS, ...MOCK_ALCOHOL_PRODUCTS];
-  }, []);
+    const tobaccoProducts = tobaccoCategories.flatMap(cat => cat.products);
+    return [...tobaccoProducts, ...deliProducts, ...groceryProducts, ...alcoholProducts];
+  }, [tobaccoCategories, deliProducts, groceryProducts, alcoholProducts]);
 
   const filteredProducts = useMemo(() => {
     return allProducts.filter(product => {
@@ -187,7 +201,7 @@ export default function FullInventoryView({ onViewModeChange }: { onViewModeChan
   const inventoryValueByDept = useMemo(() => {
     const data: Record<string, number> = {};
     allProducts.forEach(p => {
-      data[p.department] = (data[p.department] || 0) + (p.onHand * p.costPrice);
+      data[p.department] = (data[p.department] || 0) + (p.qty_on_hand * p.unit_cost);
     });
     return Object.entries(data).map(([name, value]) => ({ name, value }));
   }, [allProducts]);
@@ -293,11 +307,11 @@ export default function FullInventoryView({ onViewModeChange }: { onViewModeChan
                     </td>
                     <td className="p-4 text-xs text-white/60">{product.category}</td>
                     <td className="p-4 text-xs text-white/60">{product.department}</td>
-                    <td className="p-4 text-xs font-mono text-right font-bold">{product.onHand}</td>
-                    <td className="p-4 text-xs font-mono text-right text-white/40">{product.reorderPoint}</td>
+                    <td className="p-4 text-xs font-mono text-right font-bold">{product.qty_on_hand}</td>
+                    <td className="p-4 text-xs font-mono text-right text-white/40">{product.qty_min_stock}</td>
                     <td className="p-4 text-xs font-mono text-right">{product.dailySales * 7}</td>
                     <td className="p-4 text-xs font-mono text-right">{product.sales30d}</td>
-                    <td className="p-4 text-xs font-mono text-right text-accent-green">{product.margin}%</td>
+                    <td className="p-4 text-xs font-mono text-right text-accent-green">{product.retail_price}%</td>
                     <td className="p-4">
                       <div className={cn(
                         "inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[10px] font-bold uppercase",

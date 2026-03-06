@@ -4,6 +4,7 @@ import { X, ArrowRightLeft, Clock, Tag, Store, MessageSquare, ChevronRight } fro
 import { TradePost, TradeProposal } from '../../types';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
+import DemoProtectedAction from '../DemoProtectedAction';
 
 function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -30,16 +31,16 @@ const ManageTradePostModal: React.FC<ManageTradePostModalProps> = ({
 
   return (
     <AnimatePresence>
-      {isOpen && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-6">
-          <motion.div 
+      {isOpen && post && (
+        <div className="fixed inset-0 z-100 flex items-center justify-center p-6">
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
             className="absolute inset-0 bg-black/80 backdrop-blur-sm"
           />
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
@@ -61,7 +62,7 @@ const ManageTradePostModal: React.FC<ManageTradePostModalProps> = ({
                   <p className="text-xs text-white/40">Review and manage incoming trade offers</p>
                 </div>
               </div>
-              <button 
+              <button
                 onClick={onClose}
                 className="p-2 hover:bg-white/5 rounded-lg transition-colors"
               >
@@ -77,7 +78,7 @@ const ManageTradePostModal: React.FC<ManageTradePostModalProps> = ({
                     <Tag className="w-4 h-4 text-white/40" />
                     <h4 className="text-xs font-bold uppercase tracking-widest text-white/40">Original Post Details</h4>
                   </div>
-                  
+
                   <div className="bg-white/5 border border-white/10 rounded-2xl p-6 space-y-6">
                     <div className="grid grid-cols-2 gap-6">
                       <div>
@@ -141,19 +142,21 @@ const ManageTradePostModal: React.FC<ManageTradePostModalProps> = ({
                           </div>
 
                           <div className="flex items-center gap-2">
-                            <button 
+                            <button
                               onClick={() => onViewProposalDetails(proposal)}
                               className="flex-1 py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg text-[10px] font-bold uppercase tracking-wider text-white/60 transition-colors"
                             >
                               View Details
                             </button>
-                            <button 
-                              onClick={() => onAcceptProposal(proposal)}
-                              className="flex-1 py-2 bg-accent-green hover:bg-accent-green/90 text-black rounded-lg text-[10px] font-bold uppercase tracking-wider transition-colors flex items-center justify-center gap-1.5"
-                            >
-                              Accept & Chat
-                              <ChevronRight className="w-3 h-3" />
-                            </button>
+                            <DemoProtectedAction>
+                              <button
+                                onClick={() => onAcceptProposal(proposal)}
+                                className="flex-1 py-2 bg-accent-green hover:bg-accent-green/90 text-black rounded-lg text-[10px] font-bold uppercase tracking-wider transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
+                              >
+                                Accept & Chat
+                                <ChevronRight className="w-3 h-3" />
+                              </button>
+                            </DemoProtectedAction>
                           </div>
                         </div>
                       ))

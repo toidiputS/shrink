@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { 
-  X, 
-  ArrowRightLeft, 
-  Store, 
-  Tag, 
+import {
+  X,
+  ArrowRightLeft,
+  Store,
+  Tag,
   Send,
   Info
 } from 'lucide-react';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { TradePost } from '../../types';
+import DemoProtectedAction from '../DemoProtectedAction';
 
 function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -65,15 +66,15 @@ export default function ProposeTradeModal({ isOpen, onClose, post, onSend }: Pro
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-[110] flex items-center justify-center p-6">
-          <motion.div 
+        <div className="fixed inset-0 z-110 flex items-center justify-center p-6">
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
             className="absolute inset-0 bg-black/80 backdrop-blur-sm"
           />
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
@@ -89,7 +90,7 @@ export default function ProposeTradeModal({ isOpen, onClose, post, onSend }: Pro
                   <p className="text-xs text-white/40">Respond to this store's post</p>
                 </div>
               </div>
-              <button 
+              <button
                 onClick={onClose}
                 className="p-2 hover:bg-white/5 rounded-lg transition-colors"
               >
@@ -105,7 +106,7 @@ export default function ProposeTradeModal({ isOpen, onClose, post, onSend }: Pro
                     <Info className="w-3 h-3" />
                     Their Post
                   </div>
-                  
+
                   <div className="bg-white/5 border border-white/5 rounded-xl p-4 space-y-4">
                     <div className="flex items-center gap-3">
                       <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center">
@@ -140,8 +141,8 @@ export default function ProposeTradeModal({ isOpen, onClose, post, onSend }: Pro
                   <div className="space-y-4">
                     <div className="space-y-2">
                       <label className="text-[10px] font-bold uppercase tracking-widest text-white/40">We Can Supply</label>
-                      <input 
-                        type="text" 
+                      <input
+                        type="text"
                         value={supplyItem}
                         onChange={(e) => setSupplyItem(e.target.value)}
                         placeholder="Item name"
@@ -152,8 +153,8 @@ export default function ProposeTradeModal({ isOpen, onClose, post, onSend }: Pro
 
                     <div className="space-y-2">
                       <label className="text-[10px] font-bold uppercase tracking-widest text-white/40">Quantity</label>
-                      <input 
-                        type="text" 
+                      <input
+                        type="text"
                         value={supplyQty}
                         onChange={(e) => setSupplyQty(e.target.value)}
                         placeholder="e.g. 10 cartons"
@@ -164,8 +165,8 @@ export default function ProposeTradeModal({ isOpen, onClose, post, onSend }: Pro
 
                     <div className="space-y-2">
                       <label className="text-[10px] font-bold uppercase tracking-widest text-white/40">In Return, We Need (Optional)</label>
-                      <input 
-                        type="text" 
+                      <input
+                        type="text"
                         value={requestItem}
                         onChange={(e) => setRequestItem(e.target.value)}
                         placeholder="Item name"
@@ -175,7 +176,7 @@ export default function ProposeTradeModal({ isOpen, onClose, post, onSend }: Pro
 
                     <div className="space-y-2">
                       <label className="text-[10px] font-bold uppercase tracking-widest text-white/40">Notes for Store</label>
-                      <textarea 
+                      <textarea
                         value={notes}
                         onChange={(e) => setNotes(e.target.value)}
                         placeholder="Delivery timing, conditions, etc."
@@ -187,20 +188,22 @@ export default function ProposeTradeModal({ isOpen, onClose, post, onSend }: Pro
               </div>
 
               <div className="p-6 bg-white/5 border-t border-white/10 flex items-center justify-end gap-4">
-                <button 
+                <button
                   type="button"
                   onClick={onClose}
                   className="px-6 py-2 text-xs font-bold uppercase tracking-wider text-white/40 hover:text-white transition-colors"
                 >
                   Cancel
                 </button>
-                <button 
-                  type="submit"
-                  className="px-8 py-3 bg-accent-green text-black rounded-xl font-bold text-xs uppercase tracking-widest hover:bg-accent-green/90 transition-all shadow-lg shadow-accent-green/10 flex items-center gap-2"
-                >
-                  <Send className="w-3 h-3" />
-                  Send Proposal
-                </button>
+                <DemoProtectedAction>
+                  <button
+                    type="submit"
+                    className="px-8 py-3 bg-accent-green text-black rounded-xl font-bold text-xs uppercase tracking-widest hover:bg-accent-green/90 transition-all shadow-lg shadow-accent-green/10 flex items-center gap-2 cursor-pointer"
+                  >
+                    <Send className="w-3 h-3" />
+                    Send Proposal
+                  </button>
+                </DemoProtectedAction>
               </div>
             </form>
           </motion.div>

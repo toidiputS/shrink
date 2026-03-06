@@ -2,29 +2,35 @@ export type ProductStatus = 'Healthy' | 'Low' | 'Critical';
 
 export interface Product {
   id: string;
+  store_id?: string;
   sku: string;
   name: string;
-  brand: string;
   category: string;
   department: string;
-  onHand: number;
-  reorderPoint: number;
-  dailySales: number;
-  sales30d: number;
-  sellThrough: number;
-  margin: number;
-  status: ProductStatus;
-  row: number;
-  slot: number;
+  unit_cost: number;
+  retail_price: number;
+  qty_on_hand: number;
+  qty_min_stock: number;
+  supplier_id?: string;
+  last_synced?: string;
+
+  // UI Specific fallback properties that are derived or mock
+  brand?: string;
+  dailySales?: number;
+  sales30d?: number;
+  sellThrough?: number;
+  margin?: number;
+  status?: ProductStatus;
+  row?: number;
+  slot?: number;
   slotId?: string; // e.g. "A-1", "K-5"
-  costPrice: number;
-  lastPODate: string;
-  supplier: {
+  lastPODate?: string;
+  supplier?: {
     name: string;
     contact: string;
     email: string;
   };
-  historicalSales: { date: string; sales: number }[];
+  historicalSales?: { date: string; sales: number }[];
   basePricePerLb?: number;
   currentPromo?: string;
   sellByRange?: string; // e.g. "Mar 3–5"
@@ -36,7 +42,32 @@ export interface Product {
 }
 
 export type TobaccoCategory = 'Cigarettes' | 'Vapes' | 'Chewing Tobacco' | 'Cigars';
-export type ViewMode = 'TobaccoWall' | 'FullInventory' | 'DataIntegration' | 'StoreOverview' | 'TradersGuild' | 'DeliHotFoods' | 'GroceryDryGoods' | 'AlcoholStore' | 'Security' | 'Settings';
+export type ViewMode = 'TobaccoWall' | 'FullInventory' | 'DataIntegration' | 'StoreOverview' | 'TradersGuild' | 'DeliHotFoods' | 'GroceryDryGoods' | 'AlcoholStore' | 'Security' | 'Settings' | 'Lottery';
+
+export interface LotteryBook {
+  id: string;
+  store_id?: string;
+  game_name: string;
+  ticket_price: number;
+  pack_number: string;
+  tickets_total: number;
+  tickets_sold: number;
+  tickets_remaining: number;
+  activated_by?: string;
+  activated_at: string;
+  closed_at: string | null;
+  status: 'active' | 'closed' | string;
+}
+
+export interface LotterySettlement {
+  id: string;
+  store_id?: string;
+  date: string;
+  total_activated_value: number;
+  total_redeemed_value: number;
+  net_settlement: number;
+  created_at?: string;
+}
 
 export type TradePostStatus = 'Open' | 'Under Review' | 'Negotiating' | 'Completed' | 'Expired';
 

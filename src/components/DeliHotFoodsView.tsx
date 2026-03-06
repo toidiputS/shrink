@@ -93,15 +93,16 @@ const MOCK_WASTE_LOG: WasteEntry[] = [
 ];
 
 interface DeliHotFoodsViewProps {
+  products: Product[];
   onProductClick?: (product: Product) => void;
   onMoveToTradersGuild?: (product: Product) => void;
 }
 
-export default function DeliHotFoodsView({ onProductClick, onMoveToTradersGuild }: DeliHotFoodsViewProps) {
+export default function DeliHotFoodsView({ products, onProductClick, onMoveToTradersGuild }: DeliHotFoodsViewProps) {
   const [hotCase, setHotCase] = useState<HotCaseItem[]>(MOCK_HOT_CASE);
   const [prepLog, setPrepLog] = useState<PrepEntry[]>(MOCK_PREP_LOG);
   const [wasteLog, setWasteLog] = useState<WasteEntry[]>(MOCK_WASTE_LOG);
-  const [deliCounter, setDeliCounter] = useState<Product[]>(MOCK_DELI_PRODUCTS.filter(p => p.category === 'Deli Counter'));
+  const deliCounter = products.filter(p => p.category === 'Deli Counter');
   const [specials, setSpecials] = useState<DeliSpecial[]>(MOCK_SPECIALS);
   const [activeTab, setActiveTab] = useState<'PrepLog' | 'WasteLog'>('PrepLog');
   const [hoveredHotItem, setHoveredHotItem] = useState<any>(null);
@@ -142,7 +143,7 @@ export default function DeliHotFoodsView({ onProductClick, onMoveToTradersGuild 
     const headers = ['Product', 'SKU', 'Category', 'Status', 'Daily Sales', 'Stock Level'];
     const rows = [
       ...hotCase.map(item => [item.name, '', 'Hot Case', item.panLevel, '', '']),
-      ...deliCounter.map(item => [item.name, item.sku, item.category, item.status, item.dailySales, item.onHand])
+      ...deliCounter.map(item => [item.name, item.sku, item.category, item.status, item.dailySales, item.qty_on_hand])
     ];
 
     const csvContent = [headers.join(','), ...rows.map(r => r.join(','))].join('\n');
@@ -458,8 +459,8 @@ export default function DeliHotFoodsView({ onProductClick, onMoveToTradersGuild 
                       </td>
                       <td className="p-4">
                         <div className="flex flex-col">
-                          <span className="text-sm font-black text-white">{item.onHand} lbs</span>
-                          <span className="text-[8px] text-white/20 uppercase font-black tracking-widest leading-none mt-0.5">Min: {item.reorderPoint}</span>
+                          <span className="text-sm font-black text-white">{item.qty_on_hand} lbs</span>
+                          <span className="text-[8px] text-white/20 uppercase font-black tracking-widest leading-none mt-0.5">Min: {item.qty_min_stock}</span>
                         </div>
                       </td>
                       <td className="p-4">
@@ -512,7 +513,7 @@ export default function DeliHotFoodsView({ onProductClick, onMoveToTradersGuild 
                         <div className="grid grid-cols-2 gap-2">
                           <div className="bg-white/5 p-2 rounded-lg">
                             <p className="text-[8px] text-white/40 uppercase font-bold mb-1">On Hand</p>
-                            <p className="text-xs font-mono font-bold text-white">{hoveredCounterItem.onHand} lbs</p>
+                            <p className="text-xs font-mono font-bold text-white">{hoveredCounterItem.qty_on_hand} lbs</p>
                           </div>
                           <div className="bg-white/5 p-2 rounded-lg">
                             <p className="text-[8px] text-white/40 uppercase font-bold mb-1">Price/lb</p>

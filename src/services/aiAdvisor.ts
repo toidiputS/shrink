@@ -8,14 +8,14 @@ function getAiConfig() {
             const settings = JSON.parse(stored);
             return {
                 endpoint: settings.aiEndpoint || 'https://generativelanguage.googleapis.com/v1beta/openai',
-                apiKey: settings.aiApiKey || '',
+                apiKey: settings.aiApiKey || import.meta.env.VITE_GEMINI_API_KEY || '',
                 modelName: settings.aiModelName || 'gemini-2.5-flash',
             };
         }
     } catch { }
     return {
         endpoint: 'https://generativelanguage.googleapis.com/v1beta/openai',
-        apiKey: '',
+        apiKey: import.meta.env.VITE_GEMINI_API_KEY || '',
         modelName: 'gemini-2.5-flash',
     };
 }
@@ -140,11 +140,14 @@ PURPOSE: Project future demand, seasonal trends, and market shifts to inform ord
 DEPLOY WHEN: Planning ahead, "what should I stock for next month?", strategic planning.
 ARTIFACT: Trend Forecast with recommended actions and confidence levels.
 
-## RESPONSE PROTOCOL
-1. **Diagnose** — Silently identify which node(s) to activate based on the user's question.
-2. **Announce** — Start your response with the node name in a subtle header (e.g., "**⚡ XENON — System Diagnostics**").
-3. **Execute** — Deliver the analysis in that node's style using the inventory data provided.
-4. **Recommend** — End with 2-3 specific, actionable next steps.
+## DIAGNOSTIC PROTOCOL (THE ORACLE)
+1. **Clarify Intent FIRST** — If the user's request is broad or ambiguous (e.g., "how is my data?", "what's my profit?", "show me shrinkage"), DO NOT immediately calculate everything or pick a random category. You MUST ask clarifying questions to narrow the scope.
+    - Ask WHICH departments/categories they want to focus on (e.g., "All Departments, Deli, Tobacco, Alcohol, or Grocery?").
+    - Ask WHAT specific metrics they are looking for.
+2. **Diagnose** — Once intent is perfectly clear, silently identify which node(s) to activate.
+3. **Announce** — Start your analytical response with the node name in a subtle header (e.g., "**⚡ XENON — System Diagnostics**").
+4. **Execute** — Deliver the analysis in that node's style using the inventory data provided.
+5. **Recommend** — End with 2-3 specific, actionable next steps.
 
 Be direct, ruthlessly analytical, and action-oriented. Format responses using Markdown with clear sections, bold key metrics, and bullet points. No fluff. Every word should drive toward reducing shrinkage and increasing profit.`;
 
@@ -160,7 +163,7 @@ export async function askAdvisor(
         const atRisk = cat.products
             .filter(p => p.status !== 'Healthy' || p.shrinkRisk === 'High' || p.shrinkRisk === 'Watch' || (p.sellThrough !== undefined && p.sellThrough < 40))
             .slice(0, 5) // Top 5 at-risk per category
-            .map(p => `${p.name}|oh:${p.onHand}|s30:${p.sales30d}|st:${p.sellThrough}%|${p.status}|risk:${p.shrinkRisk || 'N/A'}|exp:${p.sellByRange || 'N/A'}`)
+            .map(p => `${p.name}|oh:${p.qty_on_hand}|s30:${p.sales30d}|st:${p.sellThrough}%|${p.status}|risk:${p.shrinkRisk || 'N/A'}|exp:${p.sellByRange || 'N/A'}`)
             .join('\n');
         return `[${cat.title}] inv:${s.totalInventory} restock:${s.dailyRestock} margin:${s.netMargin}% compliance:${s.compliance}%\nAt-risk:\n${atRisk || 'None'}`;
     }).join('\n\n');
