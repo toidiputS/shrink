@@ -5,10 +5,13 @@ import './index.css';
 
 import { AuthProvider } from './context/AuthContext';
 
+import { Analytics } from "@vercel/analytics/react"
+
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <AuthProvider>
       <App />
+      <Analytics />
     </AuthProvider>
   </StrictMode>,
 );
