@@ -64,6 +64,13 @@ export default function App() {
     return activeCategories.find(c => c.id === activeCategory) || activeCategories[0] || MOCK_CATEGORIES[0];
   }, [activeCategory, activeCategories]);
 
+  const handleViewModeChange = (mode: ViewMode) => {
+    setViewMode(mode);
+    if (mode !== 'TobaccoWall' && mode !== 'FullInventory') {
+      setActiveCategory('Cigarettes');
+    }
+  };
+
   const handleStartPitch = () => {
     setIsPitchModeOpen(true);
     setPitchStep(1);
@@ -174,9 +181,9 @@ export default function App() {
           onCategoryChange={(cat) => {
             setActiveCategory(cat);
             setSelectedProduct(null);
-            setViewMode('TobaccoWall');
+            handleViewModeChange('TobaccoWall');
           }}
-          onViewModeChange={setViewMode}
+          onViewModeChange={handleViewModeChange}
           onStartPitch={handleStartPitch}
         />
 
@@ -207,14 +214,14 @@ export default function App() {
                 <Header
                   category={currentCategoryData}
                   viewMode={viewMode}
-                  onViewModeChange={setViewMode}
+                  onViewModeChange={handleViewModeChange}
                   onGenerateReport={() => setShowReportModal(true)}
                 />
               )}
 
               {viewMode === 'FullInventory' ? (
                 <FullInventoryView
-                  onViewModeChange={setViewMode}
+                  onViewModeChange={handleViewModeChange}
                   deliProducts={deliProducts}
                   groceryProducts={groceryProducts}
                   alcoholProducts={alcoholProducts}
@@ -223,7 +230,7 @@ export default function App() {
               ) : viewMode === 'DataIntegration' ? (
                 <DataIntegrationView />
               ) : viewMode === 'StoreOverview' ? (
-                <StoreOverview onViewModeChange={setViewMode} />
+                <StoreOverview onViewModeChange={handleViewModeChange} />
               ) : viewMode === 'TradersGuild' ? (
                 <TradersGuildView />
               ) : viewMode === 'DeliHotFoods' ? (
