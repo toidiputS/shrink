@@ -102,7 +102,8 @@ function getSectionHealth(products: Product[]): 'green' | 'orange' | 'red' {
 
 function getSectionStats(products: Product[]) {
     const totalSKUs = products.length;
-    const avgMargin = totalSKUs > 0 ? Math.round(products.reduce((s, p) => s + p.retail_price, 0) / totalSKUs) : 0;
+    const avgMarginRaw = totalSKUs > 0 ? Math.round(products.reduce((s, p) => s + (p.margin || 0), 0) / totalSKUs) : null;
+    const avgMargin = avgMarginRaw !== null && !isNaN(avgMarginRaw) ? avgMarginRaw : null;
     const totalDailySales = products.reduce((s, p) => s + p.dailySales, 0);
     const criticalCount = products.filter(p => p.status === 'Critical').length;
     const lowCount = products.filter(p => p.status === 'Low').length;
@@ -245,7 +246,7 @@ const AlcoholStoreView: React.FC<AlcoholStoreViewProps> = ({ products, onProduct
                                     </div>
                                     <div className="bg-black/20 rounded-xl p-3 border border-white/5">
                                         <div className="text-[8px] text-white/30 uppercase font-black tracking-widest mb-1">Avg Margin</div>
-                                        <div className="text-xl font-mono font-bold text-accent-green">{stats.avgMargin}%</div>
+                                        <div className="text-xl font-mono font-bold text-accent-green">{stats.avgMargin !== null ? `${stats.avgMargin}%` : '—'}</div>
                                     </div>
                                     <div className="bg-black/20 rounded-xl p-3 border border-white/5">
                                         <div className="text-[8px] text-white/30 uppercase font-black tracking-widest mb-1">Est. Shrink</div>
@@ -332,7 +333,7 @@ const AlcoholStoreView: React.FC<AlcoholStoreViewProps> = ({ products, onProduct
                                         </div>
                                         <div>
                                             <div className="text-[8px] text-white/30 uppercase font-bold">Margin</div>
-                                            <div className="text-sm font-mono font-bold text-accent-green">{stats.avgMargin}%</div>
+                                            <div className="text-sm font-mono font-bold text-accent-green">{stats.avgMargin !== null ? `${stats.avgMargin}%` : '—'}</div>
                                         </div>
                                         <div>
                                             <div className="text-[8px] text-white/30 uppercase font-bold">Sales/Day</div>
