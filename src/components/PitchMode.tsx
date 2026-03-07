@@ -335,7 +335,6 @@ export default function PitchMode({ currentStep, onNext, onBack, onExit }: Pitch
           </button>
         </div>
       </div>
-
       {/* Coach Mark */}
       <div className={cn(
         "absolute flex flex-col items-center transition-all duration-500 pointer-events-auto",
@@ -346,69 +345,77 @@ export default function PitchMode({ currentStep, onNext, onBack, onExit }: Pitch
           initial={{ opacity: 0, y: 20, scale: 0.95 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           className={cn(
-            "bg-[#1A1A1A] border border-white/10 rounded-2xl p-8 shadow-[0_32px_64px_-12px_rgba(0,0,0,0.8)] max-w-2xl w-full",
+            "bg-[#1A1A1A] border border-white/10 rounded-2xl shadow-[0_32px_64px_-12px_rgba(0,0,0,0.8)] max-w-2xl w-full max-h-[85vh] overflow-y-auto overscroll-contain",
             currentStep === PITCH_STEPS.length && "border-accent-green/30 shadow-accent-green/5"
           )}
         >
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-8 h-8 rounded-lg bg-accent-green/10 flex items-center justify-center">
-              <Target className="w-4 h-4 text-accent-green" />
+          <div className="p-8">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-8 h-8 rounded-lg bg-accent-green/10 flex items-center justify-center">
+                <Target className="w-4 h-4 text-accent-green" />
+              </div>
+              <span className="text-[10px] font-bold text-accent-green uppercase tracking-widest">{step.title}</span>
             </div>
-            <span className="text-[10px] font-bold text-accent-green uppercase tracking-widest">{step.title}</span>
-          </div>
 
-          <h2 className="text-2xl font-bold text-white mb-4 tracking-tight leading-tight">
-            {step.headline}
-          </h2>
+            <h2 className="text-2xl font-bold text-white mb-4 tracking-tight leading-tight">
+              {step.headline}
+            </h2>
 
-          <div className="mb-8">
-            {step.content}
-          </div>
-
-          {currentStep < PITCH_STEPS.length && (
-            <div className="flex items-center gap-2 mb-8 p-3 bg-white/5 rounded-xl border border-white/5">
-              <Zap className="w-3 h-3 text-accent-green" />
-              <p className="text-[10px] text-white/40 font-medium italic">{step.instruction}</p>
+            <div className="mb-8">
+              {step.content}
             </div>
-          )}
 
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <button
-                onClick={onBack}
-                disabled={currentStep === 1}
-                className="flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider text-white/40 hover:text-white disabled:opacity-0 transition-all"
-              >
-                <ChevronLeft className="w-4 h-4" />
-                Back
-              </button>
-              {currentStep < PITCH_STEPS.length ? (
+            {currentStep < PITCH_STEPS.length && (
+              <div className="flex items-center gap-2 mb-8 p-3 bg-white/5 rounded-xl border border-white/5">
+                <Zap className="w-3 h-3 text-accent-green" />
+                <p className="text-[10px] text-white/40 font-medium italic">{step.instruction}</p>
+              </div>
+            )}
+
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
                 <button
-                  onClick={onNext}
-                  className="flex items-center gap-2 px-8 py-3 bg-accent-green text-black rounded-xl font-bold text-xs uppercase tracking-widest hover:bg-accent-green/90 transition-all shadow-lg shadow-accent-green/20"
+                  onClick={onBack}
+                  disabled={currentStep === 1}
+                  className="flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider text-white/40 hover:text-white disabled:opacity-0 transition-all"
                 >
-                  Next
-                  <ChevronRight className="w-4 h-4" />
+                  <ChevronLeft className="w-4 h-4" />
+                  Back
                 </button>
-              ) : (
-                <div className="flex items-center gap-3">
-                  <button className="flex items-center gap-2 px-8 py-3 bg-accent-green text-black rounded-xl font-bold text-xs uppercase tracking-widest hover:bg-accent-green/90 transition-all shadow-lg shadow-accent-green/20">
-                    Start Pilot At This Store
-                    <Rocket className="w-4 h-4" />
+                {currentStep < PITCH_STEPS.length ? (
+                  <button
+                    onClick={onNext}
+                    className="flex items-center gap-2 px-8 py-3 bg-accent-green text-black rounded-xl font-bold text-xs uppercase tracking-widest hover:bg-accent-green/90 transition-all shadow-lg shadow-accent-green/20"
+                  >
+                    Next
+                    <ChevronRight className="w-4 h-4" />
                   </button>
-                  <button className="flex items-center gap-2 px-6 py-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl font-bold text-xs uppercase tracking-widest text-white transition-all">
-                    Book 30-Min Setup Call
-                  </button>
-                </div>
-              )}
-            </div>
+                ) : (
+                  <div className="flex items-center gap-3">
+                    <a
+                      href="mailto:sholbrook@itsai.help?subject=Start%20Pilot%20-%20Shrink&body=Hi%2C%20I%20just%20saw%20the%20Shrink%20demo%20and%20I%27d%20like%20to%20get%20started."
+                      className="flex items-center gap-2 px-8 py-3 bg-accent-green text-black rounded-xl font-bold text-xs uppercase tracking-widest hover:bg-accent-green/90 transition-all shadow-lg shadow-accent-green/20"
+                    >
+                      Start Pilot At This Store
+                      <Rocket className="w-4 h-4" />
+                    </a>
+                    <a
+                      href="mailto:sholbrook@itsai.help?subject=Book%20Setup%20Call%20-%20Shrink&body=Hi%2C%20I%27d%20like%20to%20book%20a%2030-minute%20setup%20call%20to%20learn%20more%20about%20Shrink."
+                      className="flex items-center gap-2 px-6 py-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl font-bold text-xs uppercase tracking-widest text-white transition-all"
+                    >
+                      Book 30-Min Setup Call
+                    </a>
+                  </div>
+                )}
+              </div>
 
-            <button
-              onClick={onExit}
-              className="text-[10px] font-bold uppercase tracking-widest text-white/20 hover:text-white/40 transition-colors"
-            >
-              Exit Pitch
-            </button>
+              <button
+                onClick={onExit}
+                className="text-[10px] font-bold uppercase tracking-widest text-white/20 hover:text-white/40 transition-colors"
+              >
+                Exit Pitch
+              </button>
+            </div>
           </div>
         </motion.div>
       </div>
