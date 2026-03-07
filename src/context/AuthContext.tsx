@@ -40,6 +40,18 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
     useEffect(() => {
         supabase.auth.getSession().then(({ data: { session } }) => {
+            // If the persisted session is the demo account, clear it
+            // so the user always lands on the login screen fresh
+            if (session?.user?.email === 'demo@shrink.app') {
+                supabase.auth.signOut().then(() => {
+                    setSession(null);
+                    setUser(null);
+                    setProfile(null);
+                    setLoading(false);
+                });
+                return;
+            }
+
             setSession(session);
             setUser(session?.user ?? null);
             if (session?.user) {
@@ -85,16 +97,21 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
     const signOut = async () => {
         await supabase.auth.signOut();
+        setSession(null);
+        setUser(null);
+        setProfile(null);
     };
 
     const manualSetUser = (newProfile: UserProfile) => {
         setProfile(newProfile);
-        setSession({} as Session); // Dummy session to pass routing checks
+        setSession({} as Session);
         setUser({ id: newProfile.id } as User);
         setLoading(false);
     };
 
-    const isDemoUser = profile?.email === 'demo@shrink.app';
+    const isDemoUser = profile?.email === 'demo@shrink.app' ||
+        profile?.id === 'demo-user-id' ||
+        profile?.id === 'dev-backdoor-id';
 
     return (
         <AuthContext.Provider value={{ session, user, profile, loading, isDemoUser, signOut, manualSetUser }}>
