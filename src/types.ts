@@ -42,7 +42,7 @@ export interface Product {
 }
 
 export type TobaccoCategory = 'Cigarettes' | 'Vapes' | 'Chewing Tobacco' | 'Cigars';
-export type ViewMode = 'TobaccoWall' | 'FullInventory' | 'DataIntegration' | 'StoreOverview' | 'TradersGuild' | 'DeliHotFoods' | 'GroceryDryGoods' | 'AlcoholStore' | 'Security' | 'Settings' | 'Lottery';
+export type ViewMode = 'TobaccoWall' | 'FullInventory' | 'DataIntegration' | 'StoreOverview' | 'TradersGuild' | 'DeliHotFoods' | 'GroceryDryGoods' | 'AlcoholStore' | 'Security' | 'Settings' | 'Lottery' | 'Network';
 
 export interface LotteryBook {
   id: string;

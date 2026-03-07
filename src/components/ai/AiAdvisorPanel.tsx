@@ -356,8 +356,8 @@ export default function AiAdvisorPanel({
                                     <video src="/shrink_logo.webm" autoPlay loop muted playsInline className="w-[150%] h-[150%] object-contain hue-rotate-140deg saturate-150 contrast-125" />
                                 </div>
                                 <div>
-                                    <h2 className="font-bold text-white text-sm">ORACLE • Shrink AI</h2>
-                                    <p className="text-[10px] text-white/40 font-medium">20 Node Tools · ITS AI Domain Canon</p>
+                                    <h2 className="font-bold text-white text-sm">Shrink AI Advisor</h2>
+                                    <p className="text-[10px] text-white/40 font-medium">ITS AI Domain Canon</p>
                                 </div>
                             </div>
                             <div className="flex items-center gap-2">
@@ -387,7 +387,7 @@ export default function AiAdvisorPanel({
                                         <video src="/shrink_logo.webm" autoPlay loop muted playsInline className="w-[150%] h-[150%] object-contain hue-rotate-140deg saturate-150 contrast-125" />
                                     </div>
                                     <div className="text-center">
-                                        <h3 className="text-white/80 font-bold text-sm mb-1">ORACLE • Sovereign AI Command</h3>
+                                        <h3 className="text-white/80 font-bold text-sm mb-1">Shrink AI Advisor</h3>
                                         <p className="text-white/30 text-xs max-w-[300px]">
                                             I diagnose your intent and activate the right specialized node tool. Ask me anything, or deploy a tool below.
                                         </p>

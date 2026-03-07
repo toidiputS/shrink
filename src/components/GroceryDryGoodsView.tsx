@@ -87,7 +87,7 @@ function getSegmentStats(products: Product[]) {
     const lowCount = products.filter(p => p.status === 'Low').length;
     const critCount = products.filter(p => p.status === 'Critical').length;
     const shrinkRiskCount = products.filter(p => p.shrinkRisk === 'High').length;
-    const avgMargin = products.length > 0 ? Math.round(products.reduce((a, p) => a + p.retail_price, 0) / products.length) : 0;
+    const avgMargin = products.length > 0 ? Math.round(products.reduce((a, p) => a + p.retail_price, 0) / products.length) : null;
     const totalDailySales = products.reduce((a, p) => a + p.dailySales, 0);
     const estShrink = Math.round(critCount * 12.5 + shrinkRiskCount * 8.3);
 
@@ -602,7 +602,7 @@ const HoverDetailCard: React.FC<HoverDetailCardProps> = ({ segment, data, positi
                 </div>
                 <div>
                     <div className="text-[8px] text-white/30 uppercase font-black tracking-widest mb-1">Avg Margin</div>
-                    <div className="text-lg font-mono font-bold text-accent-green">{stats.avgMargin}%</div>
+                    <div className="text-lg font-mono font-bold text-accent-green">{stats.avgMargin !== null ? `${stats.avgMargin}%` : '—'}</div>
                 </div>
                 <div>
                     <div className="text-[8px] text-white/30 uppercase font-black tracking-widest mb-1">Est. Shrink</div>

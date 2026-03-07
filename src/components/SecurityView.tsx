@@ -66,9 +66,9 @@ export interface Incident {
 }
 
 const INITIAL_INCIDENTS: Incident[] = [
-    { id: 'INC-001', timestamp: 'Oct 24, 14:32', cameraId: 'CAM-02', location: 'Tobacco Wall', type: 'Suspicious Activity', notes: 'Subject lingering near high-value cabinet', flaggedBy: 'Auto-Detect', status: 'Reviewed' },
-    { id: 'INC-002', timestamp: 'Oct 24, 09:15', cameraId: 'CAM-08', location: 'Parking Lot', type: 'Vandalism', notes: 'Graffiti on side wall', flaggedBy: 'J. Smith', status: 'Escalated' },
-    { id: 'INC-003', timestamp: 'Oct 23, 22:45', cameraId: 'CAM-03', location: 'Beer Cooler', type: 'Theft', notes: 'Concealment of merchandise', flaggedBy: 'Auto-Detect', status: 'Open' },
+    { id: 'INC-001', timestamp: 'Mar 05, 14:32', cameraId: 'CAM-02', location: 'Tobacco Wall', type: 'Suspicious Activity', notes: 'Subject lingering near high-value cabinet', flaggedBy: 'Auto-Detect', status: 'Reviewed' },
+    { id: 'INC-002', timestamp: 'Mar 04, 09:15', cameraId: 'CAM-08', location: 'Parking Lot', type: 'Vandalism', notes: 'Graffiti on side wall', flaggedBy: 'J. Smith', status: 'Escalated' },
+    { id: 'INC-003', timestamp: 'Mar 03, 22:45', cameraId: 'CAM-03', location: 'Beer Cooler', type: 'Theft', notes: 'Concealment of merchandise', flaggedBy: 'Auto-Detect', status: 'Open' },
 ];
 
 interface MotionAlert {
@@ -98,7 +98,11 @@ export default function SecurityView() {
     const [panicModalOpen, setPanicModalOpen] = useState(false);
 
     const [incidents, setIncidents] = useState<Incident[]>(INITIAL_INCIDENTS);
-    const [motionAlerts, setMotionAlerts] = useState<MotionAlert[]>([]);
+    const [motionAlerts, setMotionAlerts] = useState<MotionAlert[]>([
+      { id: '1', timestamp: 'Mar 05, 14:31', cameraId: 'CAM-02', cameraName: 'CAM-02', location: 'Tobacco Wall' },
+      { id: '2', timestamp: 'Mar 04, 09:14', cameraId: 'CAM-08', cameraName: 'CAM-08', location: 'Parking Lot' },
+      { id: '3', timestamp: 'Mar 03, 22:47', cameraId: 'CAM-05', cameraName: 'CAM-05', location: 'Checkout 1' },
+    ]);
     const [motionCameras, setMotionCameras] = useState<string[]>([]);
 
     const [now, setNow] = useState(new Date());

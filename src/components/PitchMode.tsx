@@ -237,7 +237,7 @@ const PITCH_STEPS: PitchStep[] = [
           </div>
           <ul className="text-[9px] text-white/60 space-y-1.5 flex-1">
             <li>• Full platform access</li>
-            <li>• ORACLE AI Advisor (20 nodes)</li>
+            <li>• Shrink AI Advisor</li>
             <li>• Real-time alerts</li>
             <li>• POS & CSV integration</li>
           </ul>

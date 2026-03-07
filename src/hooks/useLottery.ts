@@ -3,7 +3,14 @@ import { supabase } from '../lib/supabase';
 import { LotteryBook, LotterySettlement } from '../types';
 
 export function useLottery(storeId?: string) {
-    const [books, setBooks] = useState<LotteryBook[]>([]);
+    const [books, setBooks] = useState<LotteryBook[]>([
+      { id: '1', game_name: 'Mega Bucks', ticket_price: 5, pack_number: 'MB-4821', tickets_total: 300, tickets_sold: 285, tickets_remaining: 15, status: 'active', activated_at: new Date().toISOString(), closed_at: null },
+      { id: '2', game_name: 'Lucky 7s', ticket_price: 1, pack_number: 'L7-9923', tickets_total: 500, tickets_sold: 250, tickets_remaining: 250, status: 'active', activated_at: new Date().toISOString(), closed_at: null },
+      { id: '3', game_name: 'Cash Explosion', ticket_price: 10, pack_number: 'CE-3341', tickets_total: 150, tickets_sold: 142, tickets_remaining: 8, status: 'active', activated_at: new Date().toISOString(), closed_at: null },
+      { id: '4', game_name: 'Diamond Millions', ticket_price: 20, pack_number: 'DM-7712', tickets_total: 100, tickets_sold: 51, tickets_remaining: 49, status: 'active', activated_at: new Date().toISOString(), closed_at: null },
+      { id: '5', game_name: 'Gold Rush', ticket_price: 2, pack_number: 'GR-5521', tickets_total: 400, tickets_sold: 390, tickets_remaining: 10, status: 'active', activated_at: new Date().toISOString(), closed_at: null },
+      { id: '6', game_name: 'Jackpot Jumbo', ticket_price: 30, pack_number: 'JJ-1104', tickets_total: 75, tickets_sold: 30, tickets_remaining: 45, status: 'active', activated_at: new Date().toISOString(), closed_at: null },
+    ]);
     const [settlements, setSettlements] = useState<LotterySettlement[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<Error | null>(null);

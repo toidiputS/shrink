@@ -176,7 +176,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-923703',
-  'Blue Pack',
+  'Marlboro Red',
   'Cigarettes',
   'Tobacco',
   6,
@@ -248,7 +248,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-735094',
-  'Blue Pack',
+  'Newport Menthol',
   'Cigarettes',
   'Tobacco',
   9,
@@ -380,7 +380,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-565001',
-  'Blue Pack',
+  'Camel Blue',
   'Cigarettes',
   'Tobacco',
   11,
@@ -416,7 +416,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-387441',
-  'Blue Pack',
+  'Winston',
   'Cigarettes',
   'Tobacco',
   8,
@@ -476,7 +476,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-756289',
-  'Blue Pack',
+  'Lucky Strike',
   'Cigarettes',
   'Tobacco',
   13,
@@ -500,7 +500,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-156897',
-  'Blue Pack',
+  'American Spirit',
   'Cigarettes',
   'Tobacco',
   9,
@@ -524,7 +524,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-794875',
-  'Blue Pack',
+  'Pall Mall',
   'Cigarettes',
   'Tobacco',
   5,
@@ -596,7 +596,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-233424',
-  'Blue Pack',
+  'Kool',
   'Cigarettes',
   'Tobacco',
   10,
@@ -668,7 +668,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-960887',
-  'Blue Pack',
+  'Salem',
   'Cigarettes',
   'Tobacco',
   10,
@@ -692,7 +692,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-732187',
-  'Blue Pack',
+  '305s',
   'Cigarettes',
   'Tobacco',
   14,
@@ -824,7 +824,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-128570',
-  'Blue Pack',
+  'Marlboro Red',
   'Cigarettes',
   'Tobacco',
   11,
@@ -956,7 +956,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-620167',
-  'Blue Pack',
+  'Newport Menthol',
   'Cigarettes',
   'Tobacco',
   13,
@@ -1004,7 +1004,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-204081',
-  'Blue Pack',
+  'Camel Blue',
   'Cigarettes',
   'Tobacco',
   6,
@@ -1100,7 +1100,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-754291',
-  'Blue Pack',
+  'Winston',
   'Cigarettes',
   'Tobacco',
   11,
@@ -1220,7 +1220,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-897698',
-  'Blue Pack',
+  'Lucky Strike',
   'Cigarettes',
   'Tobacco',
   11,
@@ -1292,7 +1292,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-468192',
-  'Blue Pack',
+  'American Spirit',
   'Cigarettes',
   'Tobacco',
   5,
@@ -1436,7 +1436,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-474990',
-  'Blue Pack',
+  'Pall Mall',
   'Cigarettes',
   'Tobacco',
   6,
@@ -1448,7 +1448,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-511028',
-  'Blue Pack',
+  'Kool',
   'Cigarettes',
   'Tobacco',
   12,
@@ -1460,7 +1460,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-238987',
-  'Blue Pack',
+  'Salem',
   'Cigarettes',
   'Tobacco',
   11,
@@ -1472,7 +1472,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-934867',
-  'Blue Pack',
+  '305s',
   'Cigarettes',
   'Tobacco',
   14,
@@ -1604,7 +1604,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-494447',
-  'Blue Pack',
+  'Marlboro Red',
   'Cigarettes',
   'Tobacco',
   9,
@@ -1952,7 +1952,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-251980',
-  'Blue Pack',
+  'Newport Menthol',
   'Cigarettes',
   'Tobacco',
   8,
@@ -2192,7 +2192,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-678599',
-  'Blue Pack',
+  'Camel Blue',
   'Cigarettes',
   'Tobacco',
   9,
@@ -2264,7 +2264,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-840073',
-  'Blue Pack',
+  'Winston',
   'Cigarettes',
   'Tobacco',
   10,
@@ -2372,7 +2372,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-678111',
-  'Blue Pack',
+  'Lucky Strike',
   'Cigarettes',
   'Tobacco',
   7,
@@ -2396,7 +2396,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-292982',
-  'Blue Pack',
+  'American Spirit',
   'Cigarettes',
   'Tobacco',
   12,
@@ -2480,7 +2480,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-441655',
-  'Blue Pack',
+  'Pall Mall',
   'Cigarettes',
   'Tobacco',
   6,
@@ -2504,7 +2504,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-315443',
-  'Blue Pack',
+  'Kool',
   'Cigarettes',
   'Tobacco',
   8,
@@ -2540,7 +2540,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-877532',
-  'Blue Pack',
+  'Salem',
   'Cigarettes',
   'Tobacco',
   7,
@@ -2732,7 +2732,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-454325',
-  'Blue Pack',
+  '305s',
   'Cigarettes',
   'Tobacco',
   7,
@@ -2792,7 +2792,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-793251',
-  'Blue Pack',
+  'Marlboro Red',
   'Cigarettes',
   'Tobacco',
   10,
@@ -2972,7 +2972,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-614692',
-  'Blue Pack',
+  'Newport Menthol',
   'Cigarettes',
   'Tobacco',
   7,
@@ -3032,7 +3032,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-637510',
-  'Blue Pack',
+  'Camel Blue',
   'Cigarettes',
   'Tobacco',
   12,
@@ -3044,7 +3044,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-954774',
-  'Blue Pack',
+  'Winston',
   'Cigarettes',
   'Tobacco',
   13,
@@ -3056,7 +3056,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-847461',
-  'Blue Pack',
+  'Lucky Strike',
   'Cigarettes',
   'Tobacco',
   8,
@@ -3128,7 +3128,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-386353',
-  'Blue Pack',
+  'American Spirit',
   'Cigarettes',
   'Tobacco',
   12,
@@ -3140,7 +3140,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-546617',
-  'Blue Pack',
+  'Pall Mall',
   'Cigarettes',
   'Tobacco',
   14,
@@ -5816,7 +5816,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-953994',
-  'Natural Pack',
+  'Grizzly Wintergreen',
   'Chewing Tobacco',
   'Tobacco',
   12,
@@ -5876,7 +5876,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-118261',
-  'Natural Pack',
+  'Copenhagen Long Cut',
   'Chewing Tobacco',
   'Tobacco',
   10,
@@ -5888,7 +5888,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-488146',
-  'Natural Pack',
+  'Skoal Mint',
   'Chewing Tobacco',
   'Tobacco',
   12,
@@ -5936,7 +5936,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-102153',
-  'Natural Pack',
+  'Timber Wolf',
   'Chewing Tobacco',
   'Tobacco',
   13,
@@ -6008,7 +6008,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-439880',
-  'Natural Pack',
+  'Grizzly Natural',
   'Chewing Tobacco',
   'Tobacco',
   14,
@@ -6032,7 +6032,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-291533',
-  'Natural Pack',
+  'Red Seal',
   'Chewing Tobacco',
   'Tobacco',
   12,
@@ -6068,7 +6068,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-180134',
-  'Natural Pack',
+  'Kodiak',
   'Chewing Tobacco',
   'Tobacco',
   6,
@@ -6080,7 +6080,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-555619',
-  'Natural Pack',
+  'Timberwolf Straight',
   'Chewing Tobacco',
   'Tobacco',
   5,
@@ -6116,7 +6116,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-817338',
-  'Natural Pack',
+  'Grizzly Wintergreen',
   'Chewing Tobacco',
   'Tobacco',
   9,
@@ -6152,7 +6152,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-418432',
-  'Natural Pack',
+  'Copenhagen Long Cut',
   'Chewing Tobacco',
   'Tobacco',
   14,
@@ -6164,7 +6164,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-448371',
-  'Natural Pack',
+  'Skoal Mint',
   'Chewing Tobacco',
   'Tobacco',
   11,
@@ -6188,7 +6188,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-148271',
-  'Natural Pack',
+  'Timber Wolf',
   'Chewing Tobacco',
   'Tobacco',
   7,
@@ -6200,7 +6200,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-280222',
-  'Natural Pack',
+  'Grizzly Natural',
   'Chewing Tobacco',
   'Tobacco',
   11,
@@ -6248,7 +6248,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-240834',
-  'Natural Pack',
+  'Red Seal',
   'Chewing Tobacco',
   'Tobacco',
   8,
@@ -6272,7 +6272,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-963043',
-  'Natural Pack',
+  'Kodiak',
   'Chewing Tobacco',
   'Tobacco',
   12,
@@ -6332,7 +6332,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-142725',
-  'Natural Pack',
+  'Timberwolf Straight',
   'Chewing Tobacco',
   'Tobacco',
   12,
@@ -6380,7 +6380,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-281465',
-  'Natural Pack',
+  'Grizzly Wintergreen',
   'Chewing Tobacco',
   'Tobacco',
   13,
@@ -6392,7 +6392,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-267332',
-  'Natural Pack',
+  'Copenhagen Long Cut',
   'Chewing Tobacco',
   'Tobacco',
   9,
@@ -6452,7 +6452,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-994195',
-  'Natural Pack',
+  'Skoal Mint',
   'Chewing Tobacco',
   'Tobacco',
   5,
@@ -6524,7 +6524,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-610921',
-  'Natural Pack',
+  'Timber Wolf',
   'Chewing Tobacco',
   'Tobacco',
   14,
@@ -6584,7 +6584,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-535313',
-  'Natural Pack',
+  'Grizzly Natural',
   'Chewing Tobacco',
   'Tobacco',
   8,
@@ -6644,7 +6644,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-185576',
-  'Natural Pack',
+  'Red Seal',
   'Chewing Tobacco',
   'Tobacco',
   14,
@@ -6656,7 +6656,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-248346',
-  'Natural Pack',
+  'Kodiak',
   'Chewing Tobacco',
   'Tobacco',
   9,
@@ -6680,7 +6680,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-220292',
-  'Natural Pack',
+  'Timberwolf Straight',
   'Chewing Tobacco',
   'Tobacco',
   5,
@@ -6728,7 +6728,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-168513',
-  'Natural Pack',
+  'Grizzly Wintergreen',
   'Chewing Tobacco',
   'Tobacco',
   8,
@@ -6740,7 +6740,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-201156',
-  'Natural Pack',
+  'Copenhagen Long Cut',
   'Chewing Tobacco',
   'Tobacco',
   8,
@@ -6764,7 +6764,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-218650',
-  'Natural Pack',
+  'Skoal Mint',
   'Chewing Tobacco',
   'Tobacco',
   9,
@@ -6848,7 +6848,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-298158',
-  'Natural Pack',
+  'Timber Wolf',
   'Chewing Tobacco',
   'Tobacco',
   5,
@@ -6860,7 +6860,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-319194',
-  'Natural Pack',
+  'Grizzly Natural',
   'Chewing Tobacco',
   'Tobacco',
   14,
@@ -6932,7 +6932,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-291047',
-  'Natural Pack',
+  'Red Seal',
   'Chewing Tobacco',
   'Tobacco',
   14,
@@ -6944,7 +6944,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-772507',
-  'Natural Pack',
+  'Kodiak',
   'Chewing Tobacco',
   'Tobacco',
   5,
@@ -6992,7 +6992,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-144011',
-  'Natural Pack',
+  'Timberwolf Straight',
   'Chewing Tobacco',
   'Tobacco',
   14,
@@ -7004,7 +7004,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-614327',
-  'Natural Pack',
+  'Grizzly Wintergreen',
   'Chewing Tobacco',
   'Tobacco',
   12,
@@ -7016,7 +7016,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-520271',
-  'Natural Pack',
+  'Copenhagen Long Cut',
   'Chewing Tobacco',
   'Tobacco',
   11,
@@ -7052,7 +7052,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-310445',
-  'Natural Pack',
+  'Skoal Mint',
   'Chewing Tobacco',
   'Tobacco',
   14,
@@ -7220,7 +7220,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-648920',
-  'Natural Pack',
+  'Timber Wolf',
   'Chewing Tobacco',
   'Tobacco',
   5,
@@ -7232,7 +7232,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-740976',
-  'Natural Pack',
+  'Grizzly Natural',
   'Chewing Tobacco',
   'Tobacco',
   6,
@@ -7280,7 +7280,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-720347',
-  'Natural Pack',
+  'Red Seal',
   'Chewing Tobacco',
   'Tobacco',
   11,
@@ -7292,7 +7292,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-543202',
-  'Natural Pack',
+  'Kodiak',
   'Chewing Tobacco',
   'Tobacco',
   7,
@@ -7352,7 +7352,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-485420',
-  'Natural Pack',
+  'Timberwolf Straight',
   'Chewing Tobacco',
   'Tobacco',
   13,
@@ -7364,7 +7364,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-215122',
-  'Natural Pack',
+  'Grizzly Wintergreen',
   'Chewing Tobacco',
   'Tobacco',
   10,
@@ -7424,7 +7424,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-858513',
-  'Natural Pack',
+  'Copenhagen Long Cut',
   'Chewing Tobacco',
   'Tobacco',
   13,
@@ -7520,7 +7520,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-385004',
-  'Natural Pack',
+  'Skoal Mint',
   'Chewing Tobacco',
   'Tobacco',
   6,
@@ -7604,7 +7604,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-874158',
-  'Natural Pack',
+  'Timber Wolf',
   'Chewing Tobacco',
   'Tobacco',
   9,
@@ -7628,7 +7628,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-525608',
-  'Natural Pack',
+  'Grizzly Natural',
   'Chewing Tobacco',
   'Tobacco',
   14,
@@ -7640,7 +7640,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-688214',
-  'Natural Pack',
+  'Red Seal',
   'Chewing Tobacco',
   'Tobacco',
   5,
@@ -7652,7 +7652,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-352694',
-  'Natural Pack',
+  'Kodiak',
   'Chewing Tobacco',
   'Tobacco',
   11,
@@ -7676,7 +7676,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-618886',
-  'Natural Pack',
+  'Timberwolf Straight',
   'Chewing Tobacco',
   'Tobacco',
   9,
@@ -7736,7 +7736,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-652488',
-  'Natural Pack',
+  'Grizzly Wintergreen',
   'Chewing Tobacco',
   'Tobacco',
   7,
@@ -7784,7 +7784,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-513591',
-  'Natural Pack',
+  'Copenhagen Long Cut',
   'Chewing Tobacco',
   'Tobacco',
   6,
@@ -7796,7 +7796,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-109312',
-  'Natural Pack',
+  'Skoal Mint',
   'Chewing Tobacco',
   'Tobacco',
   5,
@@ -7820,7 +7820,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-513008',
-  'Natural Pack',
+  'Timber Wolf',
   'Chewing Tobacco',
   'Tobacco',
   8,
@@ -7916,7 +7916,7 @@ INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, ret
 INSERT INTO inventory (store_id, sku, name, category, department, unit_cost, retail_price, qty_on_hand, qty_min_stock, supplier_id) VALUES (
   '00000000-0000-0000-0000-000000000001',
   'SKU-878531',
-  'Natural Pack',
+  'Grizzly Natural',
   'Chewing Tobacco',
   'Tobacco',
   14,
