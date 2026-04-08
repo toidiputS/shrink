@@ -104,7 +104,7 @@ function getSectionStats(products: Product[]) {
     const totalSKUs = products.length;
     const avgMarginRaw = totalSKUs > 0 ? Math.round(products.reduce((s, p) => s + (p.margin || 0), 0) / totalSKUs) : null;
     const avgMargin = avgMarginRaw !== null && !isNaN(avgMarginRaw) ? avgMarginRaw : null;
-    const totalDailySales = products.reduce((s, p) => s + p.dailySales, 0);
+    const totalDailySales = products.reduce((s, p) => s + (p.dailySales || 0), 0);
     const criticalCount = products.filter(p => p.status === 'Critical').length;
     const lowCount = products.filter(p => p.status === 'Low').length;
     const alertCount = criticalCount + lowCount;
@@ -161,9 +161,12 @@ const AlcoholStoreView: React.FC<AlcoholStoreViewProps> = ({ products, onProduct
         <div className="flex flex-col h-full">
             {/* Map Header */}
             <div className="mb-6 flex items-center justify-between">
-                <div>
-                    <h1 className="text-xl font-black text-white uppercase tracking-wider">Alcohol Store</h1>
-                    <p className="text-[10px] text-white/30 uppercase tracking-[0.3em] mt-1">Beer · Liquor · Wine — Topical Floor Map</p>
+                <div className="flex items-center gap-3">
+                    <Wine className="w-8 h-8 text-accent-green" />
+                    <div>
+                        <h1 className="text-xl font-black text-white uppercase tracking-wider">Alcohol Store</h1>
+                        <p className="text-[10px] text-white/30 uppercase tracking-[0.3em] mt-1">Beer · Liquor · Wine — Topical Floor Map</p>
+                    </div>
                 </div>
                 <div className="flex items-center gap-3">
                     <div className="flex items-center gap-1.5 px-3 py-1.5 bg-white/5 rounded-lg border border-white/5">

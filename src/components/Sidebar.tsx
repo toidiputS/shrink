@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   LayoutDashboard,
   Flame,
@@ -24,6 +24,7 @@ import { TobaccoCategory, ViewMode } from '../types';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { useAuth } from '../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -48,6 +49,7 @@ const Sidebar: React.FC<SidebarProps> = ({
   onViewModeChange,
   onStartPitch
 }) => {
+  const navigate = useNavigate();
   const { profile, signOut } = useAuth();
   const isManager = profile?.role === 'manager';
   const mainNav = [
@@ -70,7 +72,7 @@ const Sidebar: React.FC<SidebarProps> = ({
 
   const bottomNav = [
     ...(isManager ? [{ id: 'security', label: 'Security', icon: ShieldCheck, viewMode: 'Security' as ViewMode }] : []),
-    ...(isManager ? [{ id: 'network', label: 'Network', icon: Network }] : []),
+    ...(isManager ? [{ id: 'network', label: 'Network', icon: Network, viewMode: 'Network' as ViewMode }] : []),
     ...(isManager ? [{ id: 'data-integration', label: 'Data Integration', icon: Database, viewMode: 'DataIntegration' as ViewMode }] : []),
     ...(isManager ? [{ id: 'settings', label: 'Settings', icon: Settings, viewMode: 'Settings' as ViewMode }] : []),
   ];

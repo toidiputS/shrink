@@ -79,7 +79,19 @@ export default function LoginView() {
                 transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
                 className="relative z-10 w-full max-w-md p-8 bg-black/40 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl mx-4"
             >
-                <div className="mb-8 text-center">
+                <div className="mb-6 text-center">
+                    {/* Animated Logo */}
+                    <div className="relative w-32 h-32 mx-auto mb-4 flex items-center justify-center">
+                        <div className="absolute inset-0 bg-accent-green/10 blur-[40px] rounded-full animate-pulse" />
+                        <video
+                            src="/shrink_logo.webm"
+                            autoPlay
+                            loop
+                            muted
+                            playsInline
+                            className="w-full h-full object-contain hue-rotate-140deg saturate-150 contrast-125"
+                        />
+                    </div>
                     <h1 className="text-3xl font-bold tracking-tight text-white mb-2">Shrink</h1>
                     <p className="text-sm font-mono text-brand-primary tracking-widest uppercase mb-2">Stop the bleed</p>
                     <p className="text-white/50 text-sm">Sign in to your account</p>

@@ -49,3 +49,210 @@
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background-color: rgba(255, 255, 255, 0.2);
 }
+
+/* Theme Variants */
+.theme-dark {
+  --color-bg-primary: #0A0A0A;
+  --color-bg-secondary: #141414;
+}
+
+.theme-oled {
+  --color-bg-primary: #000000;
+  --color-bg-secondary: #0A0A0A;
+}
+
+.theme-oled body,
+.theme-oled .bg-bg-primary,
+.theme-oled [class*="bg-bg-primary"] {
+  background-color: #000000 !important;
+}
+
+.theme-oled .bg-bg-secondary,
+.theme-oled [class*="bg-bg-secondary"] {
+  background-color: #0A0A0A !important;
+}
+
+/* Compact Mode */
+.compact-mode {
+  --spacing-multiplier: 0.75;
+}
+
+.compact-mode .p-4,
+.compact-mode [class*="p-4"] {
+  padding: 0.75rem !important;
+}
+
+.compact-mode .p-6,
+.compact-mode [class*="p-6"] {
+  padding: 1rem !important;
+}
+
+.compact-mode .gap-4,
+.compact-mode [class*="gap-4"] {
+  gap: 0.75rem !important;
+}
+
+.compact-mode .gap-6,
+.compact-mode [class*="gap-6"] {
+  gap: 1rem !important;
+}
+
+.compact-mode .text-sm {
+  font-size: 0.8rem !important;
+}
+
+.compact-mode .text-xs {
+  font-size: 0.7rem !important;
+}
+
+.compact-mode table td,
+.compact-mode table th {
+  padding: 0.5rem 0.75rem !important;
+}
+
+.compact-mode .h-14 {
+  height: 2.5rem !important;
+}
+
+.compact-mode .w-14 {
+  width: 2.5rem !important;
+}
+
+/* No Animations */
+.no-animations *,
+.no-animations *::before,
+.no-animations *::after {
+  animation-duration: 0s !important;
+  animation-delay: 0s !important;
+  transition-duration: 0s !important;
+}
+
+/* Accent Color Classes */
+.accent-green {
+  color: var(--color-accent-green);
+}
+
+.accent-green-bright {
+  color: var(--color-accent-green-bright);
+}
+
+.accent-orange {
+  color: var(--color-accent-orange);
+}
+
+.accent-red {
+  color: var(--color-accent-red);
+}
+
+.accent-blue {
+  color: var(--color-accent-blue);
+}
+
+.accent-gold {
+  color: var(--color-accent-gold);
+}
+
+/* Background Accent Classes */
+.bg-accent-green {
+  background-color: var(--color-accent-green);
+}
+
+.bg-accent-green-bright {
+  background-color: var(--color-accent-green-bright);
+}
+
+.bg-accent-orange {
+  background-color: var(--color-accent-orange);
+}
+
+.bg-accent-red {
+  background-color: var(--color-accent-red);
+}
+
+.bg-accent-blue {
+  background-color: var(--color-accent-blue);
+}
+
+.bg-accent-gold {
+  background-color: var(--color-accent-gold);
+}
+
+/* Border Accent Classes */
+.border-accent-green {
+  border-color: var(--color-accent-green);
+}
+
+.border-accent-red {
+  border-color: var(--color-accent-red);
+}
+
+.border-accent-blue {
+  border-color: var(--color-accent-blue);
+}
+
+.border-accent-orange {
+  border-color: var(--color-accent-orange);
+}
+
+.border-accent-gold {
+  border-color: var(--color-accent-gold);
+}
+
+/* Text Accent Classes */
+.text-accent-green {
+  color: var(--color-accent-green);
+}
+
+.text-accent-red {
+  color: var(--color-accent-red);
+}
+
+.text-accent-blue {
+  color: var(--color-accent-blue);
+}
+
+.text-accent-orange {
+  color: var(--color-accent-orange);
+}
+
+.text-accent-gold {
+  color: var(--color-accent-gold);
+}
+
+/* Ring Accent Classes */
+.ring-accent-green {
+  --tw-ring-color: var(--color-accent-green);
+}
+
+.ring-accent-red {
+  --tw-ring-color: var(--color-accent-red);
+}
+
+.ring-accent-blue {
+  --tw-ring-color: var(--color-accent-blue);
+}
+
+.ring-accent-orange {
+  --tw-ring-color: var(--color-accent-orange);
+}
+
+.ring-accent-gold {
+  --tw-ring-color: var(--color-accent-gold);
+}
+
+/* Additional Background Colors */
+.bg-accent-red {
+  background-color: var(--color-accent-red);
+}
+
+.bg-accent-blue {
+  background-color: var(--color-accent-blue);
+}
+
+.bg-accent-orange {
+  background-color: var(--color-accent-orange);
+}
+
+.bg-accent-gold {
+  background-color: var(--color-accent-gold);
+}

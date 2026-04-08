@@ -269,36 +269,43 @@ export default function TradersGuildView() {
   return (
     <div className="flex flex-col gap-6 min-w-0 pb-10">
       {/* Header Actions */}
-      <div className="flex items-center justify-between">
-        <div className="flex bg-white/5 p-1 rounded-xl border border-white/10">
-          <button
-            onClick={() => setActiveTab('MarketFeed')}
-            className={cn(
-              "px-6 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition-all",
-              activeTab === 'MarketFeed' ? "bg-accent-green text-black shadow-lg" : "text-white/40 hover:text-white/60"
-            )}
-          >
-            Market Feed
-          </button>
-          <button
-            onClick={() => setActiveTab('MyPosts')}
-            className={cn(
-              "px-6 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition-all",
-              activeTab === 'MyPosts' ? "bg-accent-green text-black shadow-lg" : "text-white/40 hover:text-white/60"
-            )}
-          >
-            My Posts
-          </button>
-          <button
-            onClick={() => setActiveTab('ProposalsSent')}
-            className={cn(
-              "px-6 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition-all",
-              activeTab === 'ProposalsSent' ? "bg-accent-green text-black shadow-lg" : "text-white/40 hover:text-white/60"
-            )}
-          >
-            Proposals Sent
-          </button>
-        </div>
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <ArrowRightLeft className="w-8 h-8 text-accent-green" />
+            <div>
+              <h1 className="text-xl font-black text-white uppercase tracking-wider">Traders Guild</h1>
+              <p className="text-[10px] text-white/30 uppercase tracking-[0.3em] mt-1">Trade Board & Inventory Exchange</p>
+            </div>
+          </div>
+          <div className="flex bg-white/5 p-1 rounded-xl border border-white/10">
+            <button
+              onClick={() => setActiveTab('MarketFeed')}
+              className={cn(
+                "px-6 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition-all",
+                activeTab === 'MarketFeed' ? "bg-accent-green text-black shadow-lg" : "text-white/40 hover:text-white/60"
+              )}
+            >
+              Market Feed
+            </button>
+            <button
+              onClick={() => setActiveTab('MyPosts')}
+              className={cn(
+                "px-6 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition-all",
+                activeTab === 'MyPosts' ? "bg-accent-green text-black shadow-lg" : "text-white/40 hover:text-white/60"
+              )}
+            >
+              My Posts
+            </button>
+            <button
+              onClick={() => setActiveTab('ProposalsSent')}
+              className={cn(
+                "px-6 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition-all",
+                activeTab === 'ProposalsSent' ? "bg-accent-green text-black shadow-lg" : "text-white/40 hover:text-white/60"
+              )}
+            >
+              Proposals Sent
+            </button>
+          </div>
 
         <button
           onClick={() => setIsModalOpen(true)}

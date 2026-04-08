@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useAuth } from '../context/AuthContext';
+import { useAppearance } from '../context/AppearanceContext';
 import { supabase } from '../lib/supabase';
 import DemoProtectedAction from './DemoProtectedAction';
 import {
@@ -205,6 +206,7 @@ function SectionTitle({ children }: { children: React.ReactNode }) {
 
 export default function SettingsView() {
     const { profile } = useAuth();
+    const appearance = useAppearance();
     const [activeTab, setActiveTab] = useState<SettingsTab>('store');
     const [settings, setSettings] = useState<SettingsState>(loadSettings);
     const [saved, setSaved] = useState(false);
@@ -219,6 +221,17 @@ export default function SettingsView() {
     const [isSubmittingEmployee, setIsSubmittingEmployee] = useState(false);
     const [employeeError, setEmployeeError] = useState<string | null>(null);
     const [newEmployee, setNewEmployee] = useState({ name: '', email: '', role: 'employee' });
+
+    // Sync appearance settings from context to local state on mount
+    useEffect(() => {
+        setSettings(prev => ({
+            ...prev,
+            theme: appearance.theme,
+            accentColor: appearance.accentColor,
+            compactMode: appearance.compactMode,
+            animations: appearance.animations,
+        }));
+    }, []);
 
     // Auto-save on change
     useEffect(() => {
@@ -767,7 +780,10 @@ Format responses with Markdown.`}
                     {(['dark', 'oled'] as const).map(theme => (
                         <button
                             key={theme}
-                            onClick={() => update('theme', theme)}
+                            onClick={() => {
+                                update('theme', theme);
+                                appearance.setTheme(theme);
+                            }}
                             className={cn(
                                 "p-4 rounded-xl border-2 transition-all text-left cursor-pointer",
                                 settings.theme === theme
@@ -795,17 +811,15 @@ Format responses with Markdown.`}
                         <button
                             key={color.id}
                             onClick={() => update('accentColor', color.id)}
-                            className="flex flex-col items-center gap-2 group cursor-pointer"
+                            className={cn(
+                                "p-3 rounded-xl border-2 transition-all text-left cursor-pointer flex items-center gap-3",
+                                settings.accentColor === color.id
+                                    ? "border-accent-green bg-accent-green/10"
+                                    : "border-white/10 bg-white/5 hover:border-white/20"
+                            )}
                         >
-                            <div className={cn(
-                                "w-10 h-10 rounded-xl transition-all",
-                                color.tw,
-                                settings.accentColor === color.id ? `ring-2 ${color.ring} ring-offset-2 ring-offset-black scale-110` : "opacity-60 group-hover:opacity-100"
-                            )} />
-                            <span className={cn(
-                                "text-[10px] font-bold uppercase tracking-widest",
-                                settings.accentColor === color.id ? "text-white" : "text-white/40"
-                            )}>{color.label}</span>
+                            <div className={cn("w-6 h-6 rounded-lg", color.tw)} />
+                            <div className="text-sm font-bold text-white">{color.label}</div>
                         </button>
                     ))}
                 </div>

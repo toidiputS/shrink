@@ -6,6 +6,7 @@ import LandingPage from './components/LandingPage.tsx';
 import './index.css';
 
 import { AuthProvider } from './context/AuthContext';
+import { AppearanceProvider } from './context/AppearanceContext';
 
 import { Analytics } from "@vercel/analytics/react"
 
@@ -13,11 +14,13 @@ createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>
       <AuthProvider>
-        <Routes>
-          <Route path="/" element={<LandingPage />} />
-          <Route path="/app/*" element={<App />} />
-        </Routes>
-        <Analytics />
+        <AppearanceProvider>
+          <Routes>
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/app/*" element={<App />} />
+          </Routes>
+          <Analytics />
+        </AppearanceProvider>
       </AuthProvider>
     </BrowserRouter>
   </StrictMode>,

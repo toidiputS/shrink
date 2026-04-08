@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const LandingPage: React.FC = () => {
+  const navigate = useNavigate();
   useEffect(() => {
     // Mobile Menu Toggle
     const toggleMenu = () => {
@@ -130,7 +131,7 @@ const LandingPage: React.FC = () => {
             <a href="#features" className="nav-link">Features</a>
             <a href="#pricing" className="nav-link">Pricing</a>
             <Link to="/app" className="nav-link">Demo</Link>
-            <Link to="/app" className="btn btn-demo-nav">Try Demo</Link>
+          <Link to="/login" className="btn btn-demo-nav">Try Demo</Link>
           </div>
         </div>
       </nav>
@@ -149,8 +150,8 @@ const LandingPage: React.FC = () => {
           <h1>One Control Room For<br /><span>Your Entire Store</span></h1>
           <p>Real-time inventory, shrink tracking, deli freshness, security, and AI — built for independent convenience stores.</p>
           <div className="hero-btns">
-            <a href="https://shrink.itsai.store" className="btn btn-primary">Try Demo Free</a>
-            <a href="#" className="btn btn-outline">Book a 30-Min Call</a>
+            <Link to="/login" className="btn btn-primary">Try Demo</Link>
+            <a href="tel:878-777-3778" className="btn btn-outline">Book a 30-Min Call</a>
           </div>
           <div className="social-proof">
             Trusted by independent c-store owners. No contract required.
